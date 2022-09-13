@@ -4,13 +4,13 @@
 #include "SensorsBase.h"
 #include "I2C.h"
 
-
+/**
+* @brief Класс датчика MPU6050
+*/
 class MPU6050 : public Accelerometer, public Gyroscope
 {
 
-    /*
-        Класс датчика MPU6050
-    */
+    
 
     // ----------------------------------
 
@@ -86,28 +86,58 @@ class MPU6050 : public Accelerometer, public Gyroscope
 
     public:
 
+        /**
+        * @brief
+        */
         MPU6050();
 
+        /**
+        * @brief
+        * @param chosen_accelerometer_range
+        * @param chosen_gyroscope_range
+        */
         MPU6050(int chosen_accelerometer_range, int chosen_gyroscope_range);
 
+        /**
+        * @brief 
+        * @param bus
+        * @param fd
+        */
         void startup(I2C bus, int fd); // Инициализация 
+
+        /**
+        * @brief
+        * @return
+        */
         char read_status();            // Чтение статуса 
+        /**
+        * @brief
+        */
         void get_binary_data();           // Чтение сырых битовых данных
+
+        /**
+        * @brief
+        */
         void get_sample()              // Преобразование битовых данных в реальные величины
         {
             Accelerometer::get_sample();
             Gyroscope::get_sample();
         }
+        
+        /**
+        * @brief
+        * @param rounds
+        */
         void calibration(int rounds);  // Калибровка
 };
 
-
+/**
+* @brief Класс датчика QMC5883
+*/
 class QMC5883 : public Magnetometer
 {
 
-    /*
-        Класс датчика QMC5883
-    */
+    
 
     // ----------------------------------
 
@@ -180,26 +210,51 @@ class QMC5883 : public Magnetometer
         int fd;
         char oversampling, range, rate, mode;
 
+        /**
+        * @brief
+        */
         QMC5883();
 
+        /**
+        * @brief
+        * @param chosen_oversampling
+        * @param chosen_range
+        * @param chosen_rate
+        * @param chosen_mode
+        */
         QMC5883(int chosen_oversampling, int chosen_range, int chosen_rate, int chosen_mode);
 
+        /**
+        * @brief
+        * @param bus
+        * @param fd
+        */
         void startup(I2C bus, int fd);    // Инициализация
+        /**
+        * @brief
+        * @return
+        */
         char read_status();               // Чтение статуса
+        /**
+        * @brief
+        */
         void get_binary_data();              // Чтение сырых битовых данных
+        /**
+        * @brief
+        */
         void get_sample()                 // Преобразование битовых данных в реальные величины
         {
             Magnetometer::get_sample();
         }
 };
 
-
+/**
+* @brief Класс датчика MS5837_30BA
+*/
 class MS5837_30BA : public Barometer
 {
 
-    /*
-        Класс датчика MS5837_30BA
-    */
+    
 
     // ----------------------------------
 
@@ -246,7 +301,15 @@ class MS5837_30BA : public Barometer
         int fd;
         double Temperature;
         float conversion;
+        /**
+        * @brief
+        * @param n_prom
+        */
         unsigned char _crc4(unsigned int n_prom[]);     // Проверка контрольной суммы
+        /**
+        * @brief
+        * @param Temperature
+        */
         void setT(float Temperature)
         {
             this->Temperature = Temperature;
@@ -260,17 +323,36 @@ class MS5837_30BA : public Barometer
         const static float mbar = 1.0f;
         unsigned int C[8];
 
+        /**
+        * @brief
+        */
         MS5837_30BA() : Barometer::Barometer() {}
-
+        
+        /**
+        * @brief
+        * @param bus
+        * @param fd
+        */
         bool startup(I2C bus, int fd);                  // Инициализация
         
+        /**
+        * @brief
+        */
         void get_binary_data();                            // Чтение сырых битовых данных
 
+        /**
+        * @brief
+        * @param conversion
+        */
         void set_conversion(float conversion = Pa)
         {
             this->conversion = conversion;
         }
         
+        /**
+        * @brief
+        * @return 
+        */
         float getT()
         {
             return Temperature;

@@ -1,0 +1,9 @@
+<map id="navigation.Sensor" name="navigation.Sensor">
+<area shape="rect" id="node2" href="$classnavigation_1_1Accelerometer.html" title="navigation.Accelerometer" alt="" coords="180,5,349,32"/>
+<area shape="rect" id="node4" href="$classnavigation_1_1Barometer.html" title="navigation.Barometer" alt="" coords="192,107,337,133"/>
+<area shape="rect" id="node6" href="$classnavigation_1_1Gyroscope.html" title="navigation.Gyroscope" alt="" coords="191,56,339,83"/>
+<area shape="rect" id="node7" href="$classnavigation_1_1Magnetometer.html" title="navigation.Magnetometer" alt="" coords="181,157,349,184"/>
+<area shape="rect" id="node3" href="$classnavigation_1_1MPU6050.html" title="navigation.MPU6050" alt="" coords="412,31,555,57"/>
+<area shape="rect" id="node5" href="$classnavigation_1_1MS5837__30BA.html" title="navigation.MS5837_30BA" alt="" coords="397,107,569,133"/>
+<area shape="rect" id="node8" href="$classnavigation_1_1QMC5883.html" title="navigation.QMC5883" alt="" coords="411,157,555,184"/>
+</map>

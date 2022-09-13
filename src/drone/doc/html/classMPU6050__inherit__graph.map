@@ -1,0 +1,6 @@
+<map id="MPU6050" name="MPU6050">
+<area shape="rect" id="node2" href="$classAccelerometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="5,155,112,181"/>
+<area shape="rect" id="node3" href="$classSensor3Axis.html" title="класс Sensor3Axis. Наследуется от Sensor. Является базовым для т..." alt="" coords="71,80,167,107"/>
+<area shape="rect" id="node5" href="$classGyroscope.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="136,155,221,181"/>
+<area shape="rect" id="node4" href="$classSensor.html" title="класс Sensor. Является базовым для всех датчиков ..." alt="" coords="87,5,150,32"/>
+</map>

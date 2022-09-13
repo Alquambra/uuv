@@ -1,0 +1,5 @@
+<map id="QMC5883" name="QMC5883">
+<area shape="rect" id="node2" href="$classMagnetometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="5,155,111,181"/>
+<area shape="rect" id="node3" href="$classSensor3Axis.html" title="класс Sensor3Axis. Наследуется от Sensor. Является базовым для т..." alt="" coords="10,80,106,107"/>
+<area shape="rect" id="node4" href="$classSensor.html" title="класс Sensor. Является базовым для всех датчиков ..." alt="" coords="27,5,89,32"/>
+</map>

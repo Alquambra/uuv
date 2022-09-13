@@ -1,3 +1,12 @@
+/** 
+* @file joystick_driver.cpp 
+* @brief Драйвер для джойстика для беспроводного
+* соединения по udp 
+*/
+
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>

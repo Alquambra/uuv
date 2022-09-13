@@ -1,0 +1,24 @@
+actions: []
+authors: ''
+brief: ''
+bugtracker: ''
+depends:
+- catkin
+- roscpp
+- message_runtime
+- std_msgs
+- rospy
+- message_generation
+- geometry_msgs
+description: The drone package
+license: TODO
+maintainers: pi <pi@todo.todo>
+msgs:
+- Powers
+- Joystick_Buttons
+- Joystick
+package_type: package
+repo_url: ''
+srvs:
+- MoveForward
+url: ''

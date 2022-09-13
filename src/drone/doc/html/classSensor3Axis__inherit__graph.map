@@ -1,0 +1,8 @@
+<map id="Sensor3Axis" name="Sensor3Axis">
+<area shape="rect" id="node3" href="$classAccelerometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="5,155,112,181"/>
+<area shape="rect" id="node5" href="$classGyroscope.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="136,155,221,181"/>
+<area shape="rect" id="node6" href="$classMagnetometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="246,155,351,181"/>
+<area shape="rect" id="node2" href="$classSensor.html" title="класс Sensor. Является базовым для всех датчиков ..." alt="" coords="147,5,210,32"/>
+<area shape="rect" id="node4" href="$classMPU6050.html" title="Класс датчика MPU6050. " alt="" coords="79,229,159,256"/>
+<area shape="rect" id="node7" href="$classQMC5883.html" title="Класс датчика QMC5883. " alt="" coords="258,229,339,256"/>
+</map>

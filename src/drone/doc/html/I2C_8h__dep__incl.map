@@ -1,0 +1,7 @@
+<map id="I2C.h" name="I2C.h">
+<area shape="rect" id="node2" href="$sensors_8h.html" title="sensors.h" alt="" coords="150,80,229,107"/>
+<area shape="rect" id="node6" href="$I2C_8cpp.html" title="I2C.cpp" alt="" coords="253,80,321,107"/>
+<area shape="rect" id="node3" href="$calibration_8cpp.html" title="calibration.cpp" alt="" coords="5,155,112,181"/>
+<area shape="rect" id="node4" href="$navigation_8cpp.html" title="navigation.cpp" alt="" coords="136,155,243,181"/>
+<area shape="rect" id="node5" href="$sensors_8cpp.html" title="sensors.cpp" alt="" coords="267,155,360,181"/>
+</map>

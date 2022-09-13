@@ -8,26 +8,42 @@
 using namespace std;
 
 
+/**
+* @brief класс Sensor. Является базовым для всех датчиков 
+*/
 class Sensor
 {
-
-    /*
-        Базовый класс для датчиков
-    */
-
     public:
 
+        /**
+        * @brief инициализация датчика
+        */
         virtual void startup() {}
+
+
+        /**
+        * @brief
+        */
         virtual void get_binary_data() {}
+
+
+        /**
+        * @brief калибровка
+        */
         virtual void calibrate(int) {}
 
     protected:
 
+
+        /**
+        * @brief Преобразование старшего и младшего байтов в 16-битное число
+        * @param low младший байт
+        * @param high старший байт
+        * @return value 2-х байтовое значение 
+        */
         static int get_16bit_value(unsigned int low, unsigned int high)
         {
-            /*
-                Преобразование старшего и младшего байтов в 16-битное число
-            */
+            
 
             int value;
             long temp;
@@ -38,43 +54,77 @@ class Sensor
             return value;
         }
 
+
+        /**
+        * @brief Преобразование данных АЦП в единицу счисления величины
+        * @param value 2-х байтовое значение
+        * @param range диапазон измерений датчика
+        * @return действительное значение величины
+        */
         static float convert(int value, int range)
         {
-            /*
-                Преобразование данных АЦП в единицу счисления величины
-            */
+            
             return value / 32768.0 * range;
         }
 };
 
 
+/**
+* @brief класс Sensor3Axis. Наследуется от Sensor. 
+* Является базовым для трехосевых датчиков.
+*/
 class Sensor3Axis: public Sensor
 {
-
-    /*
-        Базовый класс для трехосевых датчиков
-    */
-
     public:
 
+        /**
+        * @brief получить диапазон измерений датчика
+        * @return диапазон измерений датчика
+        */
         virtual int get_range() {}
+
+
+        /**
+        * @brief получить значения измерений датчика по трем осям
+        * @param x значение по оси x
+        * @param y значение по оси y
+        * @param z значение по оси z
+        */
         virtual void get_3d_magnitude(float &x, float &y ,float &z) {}
+
+
+        /**
+        * @brief преобразовать значения измерений датчика по трем осям 
+        * от двоичных к действительным 
+        */
         virtual void get_sample() {}
 
     protected:
 
-        virtual void set_3d_mgnitude(float x, float y, float z) {}
+
+        /**
+        * @brief установить значения измерений датчика по трем осям
+        * @param x значение по оси x
+        * @param y значение по оси y
+        * @param z значение по оси z
+        */
+        virtual void set_3d_magnitude(float x, float y, float z) {}
+
+
+        /**
+        * @brief установить диапазон измерений датчика
+        * @param range диапазон измерений датчика
+        */
         virtual void set_range(int range) {}       
 };
 
 
+/**
+* @brief класс Accelerometer. Наследуется от Sensor3Axis.
+* Является базовым для трехосевых акселерометров.
+*/
 class Accelerometer: public Sensor3Axis
 {
-
-    /*
-        Базовый класс для трехосевых акселерометров
-    */
-
     private:
 
         float ax, ay, az;
@@ -82,6 +132,10 @@ class Accelerometer: public Sensor3Axis
 
     public:
 
+
+        /**
+        * @brief конструктор класса Accelerometer
+        */
         Accelerometer()
         {
             this->ax = 0;
@@ -90,6 +144,13 @@ class Accelerometer: public Sensor3Axis
             this->range = 0;
         }
 
+
+        /**
+        * @brief получить значения ускорений акселерометра по трем осям
+        * @param x значение по оси x
+        * @param y значение по оси y
+        * @param z значение по оси z
+        */
         void get_3d_magnitude(float &x, float &y ,float &z)
         {
             x = this->ax;
@@ -97,11 +158,21 @@ class Accelerometer: public Sensor3Axis
             z = this->az;
         }
 
+
+        /**
+        * @brief получить диапазон измерений акселерометра
+        * @return диапазон измерений акселерометра
+        */
         int get_range()
         {
             return this->range;
         }
 
+
+        /**
+        * @brief преобразовать значения измерений ускорений по трем осям 
+        * от двоичных к действительным 
+        */
         void get_sample()
         {
             ax = convert(this->ax, this->range);
@@ -111,27 +182,39 @@ class Accelerometer: public Sensor3Axis
 
     protected:
 
-        void set_3d_mgnitude(float x, float y, float z)
+
+        /**
+        * @brief установить значения ускорений акселерометра по трем осям
+        * @param x значение по оси x
+        * @param y значение по оси y
+        * @param z значение по оси z
+        */
+        void set_3d_magnitude(float x, float y, float z)
         {
             this->ax = x;
             this->ay = y;
             this->az = z;
         }
 
+
+        /**
+        * @brief установить диапазон измерений акселерометра
+        * @param range диапазон измерений акселерометра
+        */
         void set_range(int range)
         {
             this->range = range;
         }
 
+
+        /**
+        * @brief Калибровка акселерометра.
+        * Для калибровки необходимо разместить датчик на поверхности
+        * параллельной полу и держать его неподвижным.
+        * @param rounds количество измерений во время калибровки
+        */
         void calibrate(int rounds)
         {
-
-            /*
-                Калибровка акселерометра.
-                Для калибровки необходимо разместить датчик на поверхности
-                параллельной полу и держать его неподвижным.
-            */
-
             float axsum = 0.0f, aysum = 0.0f, azsum = 0.0f;
             float axoffset = 0.0f, ayoffset = 0.0f, azoffset = 0.0f;
 
@@ -156,13 +239,12 @@ class Accelerometer: public Sensor3Axis
 };
 
 
+/**
+* @brief класс Accelerometer. Наследуется от Sensor3Axis.
+* Является базовым для трехосевых акселерометров.
+*/
 class Gyroscope: public Sensor3Axis
 {
-
-    /*
-        Базовый класс для трехосевых гироскопов
-    */
-
     private:
 
         float gx, gy, gz;
@@ -170,6 +252,13 @@ class Gyroscope: public Sensor3Axis
 
     public:
 
+
+        /**
+        * @brief получить значения ускорений гироскопа по трем осям
+        * @param x значение по оси x
+        * @param y значение по оси y
+        * @param z значение по оси z
+        */
         void get_3d_magnitude(float &x, float &y ,float &z)
         {
             x = this->gx;
@@ -177,11 +266,21 @@ class Gyroscope: public Sensor3Axis
             z = this->gz;
         }
 
+
+        /**
+        * @brief получить диапазон измерений гироскопа
+        * @return диапазон измерений гироскопа
+        */
         int get_range()
         {
             return this->range;
         }
 
+
+        /**
+        * @brief преобразовать значения измерений угловой скорости по трем осям 
+        * от двоичных к действительным 
+        */
         void get_sample()
         {
             gx = convert(this->gx, this->range);
@@ -189,6 +288,10 @@ class Gyroscope: public Sensor3Axis
             gz = convert(this->gz, this->range);
         }
 
+
+        /**
+        * @brief конструктор класса Gyroscope
+        */
         Gyroscope()
         {
             this->gx = 0;
@@ -199,26 +302,38 @@ class Gyroscope: public Sensor3Axis
 
     protected:
 
-        void set_3d_mgnitude(float x, float y, float z)
+
+        /**
+        * @brief установить значения угловой скорости гироскопа по трем осям
+        * @param x значение по оси x
+        * @param y значение по оси y
+        * @param z значение по оси z
+        */
+        void set_3d_magnitude(float x, float y, float z)
         {
             this->gx = x;
             this->gy = y;
             this->gz = z;
         }
 
+
+        /**
+        * @brief установить диапазон измерений гироскопа
+        * @param range диапазон измерений гироскопа
+        */
         void set_range(int range)
         {
             this->range = range;
         }
-        
+
+
+        /**
+        * @brief Калибровка гироскопа.
+        * Для калибровки гироскопа необходимо держать датчик неподвижным.
+        * @param rounds 
+        */
         void calibrate(int rounds)
         {
-
-            /*
-                Калибровка гироскопа.
-                Для калибровки гироскопа необходимо держать датчик неподвижным.
-            */
-
             float gxsum = 0.0f, gysum = 0.0f, gzsum = 0.0f;
             float gxoffset = 0.0f, gyoffset = 0.0f, gzoffset = 0.0f;
 
@@ -243,13 +358,12 @@ class Gyroscope: public Sensor3Axis
 };
 
 
+/**
+* @brief класс Accelerometer. Наследуется от Sensor3Axis.
+* Является базовым для трехосевых акселерометров.
+*/
 class Magnetometer: public Sensor3Axis
 {
-
-    /*
-        Базовый класс для трехосевых магнетометров
-    */
-
     private:
 
         float mx, my, mz;
@@ -257,6 +371,13 @@ class Magnetometer: public Sensor3Axis
 
     public:
 
+
+        /**
+        * @brief получить значения ускорений магнетометра по трем осям
+        * @param x значение по оси x
+        * @param y значение по оси y
+        * @param z значение по оси z
+        */
         void get_3d_magnitude(float &x, float &y ,float &z)
         {
             x = this->mx;
@@ -264,11 +385,21 @@ class Magnetometer: public Sensor3Axis
             z = this->mz;
         }
 
+
+        /**
+        * @brief получить диапазон измерений магнетометра
+        * @return диапазон измерений магнетометра
+        */
         int get_range()
         {
             return this->range;
         }
 
+
+        /**
+        * @brief преобразовать значения измерений магнитной индукции по трем осям 
+        * от двоичных к действительным 
+        */
         void get_sample()
         {
             mx = convert(this->mx, this->range);
@@ -276,6 +407,10 @@ class Magnetometer: public Sensor3Axis
             mz = convert(this->mz, this->range);
         }
 
+
+        /**
+        * @brief конструктор класса Magnetometer
+        */
         Magnetometer()
         {
             this->mx = 0;
@@ -286,27 +421,39 @@ class Magnetometer: public Sensor3Axis
 
     protected:
 
-        void set_3d_mgnitude(float x, float y, float z)
+
+        /**
+        * @brief установить значения магнитной индукции магнетометра по трем осям
+        * @param x значение по оси x
+        * @param y значение по оси y
+        * @param z значение по оси z
+        */
+        void set_3d_magnitude(float x, float y, float z)
         {
             this->mx = x;
             this->my = y;
             this->mz = z;
         }      
 
+
+        /**
+        * @brief установить диапазон измерений магнетометра
+        * @param range диапазон измерений магнетометра
+        */
         void set_range(int range)
         {
             this->range = range;
-        }       
+        }   
 
+  
+        /**
+        * @brief Калибровка магнетометра.
+        * Для калибровки магнетометра необходимо вращать датчик 
+        * вокруг трех осей во всех направлениях.
+        * @param rounds
+        */
         void calibrate(int rounds)
         {
-
-            /*
-                Калибровка магнетометра.
-                Для калибровки магнетометра необходимо вращать датчик 
-                вокруг трех осей во всех направлениях.
-            */
-
             float mxmax = -32768.0f, mymax = -32768.0f, mzmax = -32768.0f;
             float mxmin = 32767.0f, mymin = 32767.0f, mzmin = 32767.0f;
             float mxoffset = 0.0f, myoffset = 0.0f, mzoffset = 0.0f;
@@ -348,16 +495,21 @@ class Magnetometer: public Sensor3Axis
 };
 
 
+/**
+* @brief  класс Barometer. Наследуется от Sensor.
+* Является базовым для барометров.
+*/
 class Barometer : public Sensor
 {
-
-    /*
-        Базовый класс для барометров
-    */
-
     protected:
 
         double Pressure;
+
+
+        /**
+        * @brief установить значение давления
+        * @param Pressure значение давление
+        */
         void setP(double Pressure)
         {
             this->Pressure = Pressure;
@@ -365,21 +517,40 @@ class Barometer : public Sensor
 
     public:
 
+    
+        /**
+        * @brief конструктор класса Barometer
+        */
         Barometer()
         {
             this->Pressure = 0;
         }
 
+   
+        /**
+        * @brief получить значение давления
+        * @return значение давления
+        */
         double getP()
         {
             return this->Pressure;
         }
 
+
+        /**
+        * @brief получить значение глубины
+        * @return значение глубины
+        */ 
         float getDepth()
         {
             return static_cast<float>(getP() - 101325) / (9.80665 * 997);
         }
 
+
+        /**
+        * @brief получить значение высоты
+        * @return значение высоты
+        */
         float getAltitude()
         {
             return static_cast<float>(1 - pow((getP() / 101325), .190295) * 145366.45 * .3048);

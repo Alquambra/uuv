@@ -1,0 +1,5 @@
+<map id="navigation.MPU6050" name="navigation.MPU6050">
+<area shape="rect" id="node2" href="$classnavigation_1_1Accelerometer.html" title="navigation.Accelerometer" alt="" coords="5,80,175,107"/>
+<area shape="rect" id="node3" href="$classnavigation_1_1Sensor.html" title="navigation.Sensor" alt="" coords="117,5,244,32"/>
+<area shape="rect" id="node4" href="$classnavigation_1_1Gyroscope.html" title="navigation.Gyroscope" alt="" coords="199,80,347,107"/>
+</map>

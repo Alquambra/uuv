@@ -11,8 +11,14 @@ from math import atan2, asin
 
 
 class PID:
+    """! класс PID регулятора"""
 
     def __init__(self, Kp, Ki, Kd):
+        """! конструктор класса PID
+        @param Kp пропорциональный коэффициент
+        @param Ki интегральный коэффициент
+        @param Kd дифференциальный коэффициент
+        """
         self.prev_error = 0
         self.proportional = 0
         self.integral = 0
@@ -25,11 +31,24 @@ class PID:
 
     @staticmethod
     def constrain(value, lower_limit, higher_limit):
+        """! ограничивает значение в заданных пределах
+        @param value значение
+        @param lower_limit нижняя граница
+        @param higher_limit верхняя граница
+        @return ограниченное значение
+        """
+
         if value < lower_limit: value = lower_limit
         if value > higher_limit: value = higher_limit
         return value
 
     def control(self, current, dt):
+        """! вычисление управляющего воздействия
+        @param current текущее значение управляемого параметра
+        @param dt период дискретизации
+        @return значение управляющего воздействия 
+        """
+
         dt = dt.to_sec()
         error = float(current - self.target)
         self.proportional = error * self.Kp
@@ -39,24 +58,39 @@ class PID:
         return PID.constrain(self.proportional + self.integral + self.derivative, -100, 100)
 
     def break_pid(self):
+        """! сбросить управляющее воздействие"""
+
         self.proportional = 0
         self.integral = 0
         self.derivative = 0
 
     def set_target(self, target):
+        """! установить целевое значение управляемого параметра
+        @param target целевое значение управляемого параметра
+        """
+
         if target != self.target:
             self.break_pid
         self.target = target
 
     def set_gains(self, P, I, D):
+        """! установить коэффициенты регулятора
+        @param P пропорциональный коэффициент
+        @param I интегральный коэффициент
+        @param D дифференциальный коэффициент
+        """
+
         self.Kp = P
         self.Ki = I
         self.Kd = D
 
 
 class Control:
+"""! класс Control. Реализует систему управления."""
 
     def __init__(self):
+        """! конструктор класса Control"""
+
         rospy.init_node("control")
 
         self.arduino = serial.Serial('/dev/ttyUSB0', 9600, bytesize=serial.EIGHTBITS, timeout=1)
@@ -88,6 +122,8 @@ class Control:
         self.t = rospy.Time.now()
 
     def save_yaml(self):
+        """! сохранить значения сервера параметров в файл"""
+
         import yaml
 
         with open(self.oceanic_yaml, 'r') as f:
@@ -118,15 +154,38 @@ class Control:
 
     @staticmethod
     def map(x, in_min, in_max, out_min, out_max):
+        """! преобразование значение из одного диапазона в другой
+        @param x входящее значение
+        @param in_min минимальное значение входящего диапазона
+        @param in_max максимальное значение входящего диапазона
+        @param out_min минимальное значение выходящего диапазона
+        @param out_max минимальное значение выходящего диапазона
+        @return выходящее значение
+        """
+
         return int((x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
     
     @staticmethod
     def constrain(x, higher_limit, lower_limit):
+        """! ограничивает значение в заданных пределах
+        @param value значение
+        @param lower_limit нижняя граница
+        @param higher_limit верхняя граница
+        @return ограниченное значение
+        """
+
         if x > higher_limit: x = higher_limit
         if x < lower_limit: x = lower_limit
         return x
 
     def control_callback(self, joystick_msg, navigation_msg):
+        """! коллбэк на получение сообщений из топиков
+        /joystick_state и /navigation_state. Чтение данных с пульта
+        и с модуля навигации. Обработка информации. Передача управляющих
+        сигналов на arduino через usb и на руку-хват в топик /pub_hand.
+        @param joystick_msg сообщение drone/Joystick.msg
+        @param navigation_msg сообщение geometry_msgs/PoseStamped.msg
+        """
 
         short_buttons = joystick_msg.Short
         long_buttons = joystick_msg.Long
@@ -289,6 +348,8 @@ class Control:
         self.t = rospy.Time.now()
 
     def run(self):
+        """! запуск системы управления"""
+
         rate = rospy.Rate(10)
         while not rospy.is_shutdown():
             try:

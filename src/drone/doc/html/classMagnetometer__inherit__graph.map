@@ -1,0 +1,5 @@
+<map id="Magnetometer" name="Magnetometer">
+<area shape="rect" id="node4" href="$classQMC5883.html" title="Класс датчика QMC5883. " alt="" coords="17,229,99,256"/>
+<area shape="rect" id="node2" href="$classSensor3Axis.html" title="класс Sensor3Axis. Наследуется от Sensor. Является базовым для т..." alt="" coords="10,80,106,107"/>
+<area shape="rect" id="node3" href="$classSensor.html" title="класс Sensor. Является базовым для всех датчиков ..." alt="" coords="27,5,89,32"/>
+</map>

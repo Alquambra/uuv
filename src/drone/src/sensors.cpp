@@ -74,13 +74,13 @@ void MPU6050::get_binary_data()
     y = get_16bit_value(bus.i2c_read_register(fd, ACCEL_YOUT_L), bus.i2c_read_register(fd, ACCEL_YOUT_H));
     z = get_16bit_value(bus.i2c_read_register(fd, ACCEL_ZOUT_L), bus.i2c_read_register(fd, ACCEL_ZOUT_H));
 
-    Accelerometer::set_3d_mgnitude(x, y, z);
+    Accelerometer::set_3d_magnitude(x, y, z);
 
     x = get_16bit_value(bus.i2c_read_register(fd, GYRO_XOUT_L), bus.i2c_read_register(fd, GYRO_XOUT_H));
     y = get_16bit_value(bus.i2c_read_register(fd, GYRO_YOUT_L), bus.i2c_read_register(fd, GYRO_YOUT_H));
     z = get_16bit_value(bus.i2c_read_register(fd, GYRO_ZOUT_L), bus.i2c_read_register(fd, GYRO_ZOUT_H));
 
-    Gyroscope::set_3d_mgnitude(x, y, z);
+    Gyroscope::set_3d_magnitude(x, y, z);
 }
 
 void MPU6050::calibration(int rounds)
@@ -244,7 +244,7 @@ void QMC5883::get_binary_data()
     y = get_16bit_value(bus.i2c_read_register(fd, YOUT_LSB), bus.i2c_read_register(fd, YOUT_MSB));
     z = get_16bit_value(bus.i2c_read_register(fd, ZOUT_LSB), bus.i2c_read_register(fd, ZOUT_MSB));
 
-    Magnetometer::set_3d_mgnitude(x, y, z);
+    Magnetometer::set_3d_magnitude(x, y, z);
 }
 
 
