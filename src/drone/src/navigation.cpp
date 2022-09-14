@@ -1,3 +1,10 @@
+/**
+* @file navigation.cpp
+* @brief Нода навигации. Публикует кватернион и глубину
+* в топик /talker_topic
+*/
+
+
 #include "ros/ros.h"
 #include "sensor_msgs/Imu.h"
 #include "geometry_msgs/PoseStamped.h"

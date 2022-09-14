@@ -1,6 +1,6 @@
 <map id="navigation.cpp" name="navigation.cpp">
-<area shape="rect" id="node5" href="$sensors_8h.html" title="drone/sensors.h" alt="" coords="501,80,615,107"/>
-<area shape="rect" id="node18" href="$MadgwickFilter_8h.html" title="drone/MadgwickFilter.h" alt="" coords="922,80,1079,107"/>
-<area shape="rect" id="node6" href="$SensorsBase_8h.html" title="SensorsBase.h" alt="" coords="363,155,473,181"/>
-<area shape="rect" id="node10" href="$I2C_8h.html" title="I2C.h" alt="" coords="669,155,724,181"/>
+<area shape="rect" id="node5" href="$sensors_8h.html" title="Заголовочный файл. Классы для датчиков представленных ..." alt="" coords="501,80,615,107"/>
+<area shape="rect" id="node18" href="$MadgwickFilter_8h.html" title="Заголовочный файл.Фильтр Маджвика. Преобразует данные ..." alt="" coords="922,80,1079,107"/>
+<area shape="rect" id="node6" href="$SensorsBase_8h.html" title="Заголовочный файл. Базовые классы для датчиков ..." alt="" coords="363,155,473,181"/>
+<area shape="rect" id="node10" href="$I2C_8h.html" title="Заголовочный файл. Класс, предоставляющий API для взаимо..." alt="" coords="669,155,724,181"/>
 </map>

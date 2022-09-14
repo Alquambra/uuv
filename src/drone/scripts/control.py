@@ -1,3 +1,10 @@
+"""!
+@file control.py
+@brief Система управления дроном. Пид-регулятор. 
+Для работы необходим активированный пульт.
+"""
+
+
 #!/usr/bin/env python
 import rospy
 import message_filters

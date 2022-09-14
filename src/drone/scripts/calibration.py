@@ -1,3 +1,18 @@
+"""!
+@file calibration.py 
+@brief Скрипт калибровки датчиков навигационного модуля: 
+магнетометра, акселерометра, гироскопа.
+Калибровка магнетометра производится отдельно от гироскопа
+и акселерометра. Для калибровки магнетометра необходимо 
+вращать модуль вокруг трех осей на протяжении всего процесса
+сбора данных. Для калибровки гироскопа и акселерометра модуль
+необходимо держать неподвижно строго параллельно земле.
+"""
+
+
+
+
+
 #!/usr/bin/env python
 from abc import abstractmethod
 import smbus
@@ -7,29 +22,33 @@ import rospy
 
 
 class ConfigError(Exception):
-    """
-    Exception called when sensor is configured incorrectly
-    """
+    """!Исключение. Вызывается при неправильной настройке датчика"""
 
     def __init__(self, allowed_values):
+        """!"""
         description = "Not a valid config. Value must be in %s" % allowed_values
         super().__init__(description)
 
 
 class Sensor:
+    """!класс Sensor. Является базовым для всех датчиков"""
 
     @abstractmethod
     def startup():
+        """!инициализация датчика"""
         pass
 
     @abstractmethod
-    def get_raw_data():
+    def get_binary_data():
+        """!чтение двоичных данных из регистров датчиков"""
         pass
 
     @staticmethod
-    def get_value(low, high):
-        """
-        Converting bit value of two 8-bit registers to one
+    def get_16bit_value(low, high):
+        """!Преобразование старшего и младшего байтов в 16-битное число
+        @param low младший байт
+        @param high старший байти
+        @return value 2-х байтовое значение
         """
         value = (high << 8) | low
 
@@ -39,86 +58,172 @@ class Sensor:
 
 
 class Magnetometer(Sensor):
+    """!класс Magnetometer. Наследуется от Sensor.
+    Является базовым для трехосевых магнетометров.
+    """
 
     def __init__(self):
+        """!конструктор класса Magnetometer"""
+
         self._mx = 0
         self._my = 0
         self._mz = 0
         self._magnetometer_range = 0
 
     def setM(self, mx, my, mz):
+        """!получить значения ускорений магнетометра по трем осям
+        @param mx значение по оси x
+        @param my значение по оси y
+        @param mz значение по оси z
+        """
+
         self._mx = mx
         self._my = my
         self._mz = mz
 
     def set_magnetometer_range(self, sensor_range):
+        """!установить диапазон измерений магнетометра
+        @param sensor_range диапазон измерений магнетометра"""
+
         self._magnetometer_range = sensor_range
 
     def getM(self):
+        """!получить значения ускорений магнетометра по трем осям
+        @return mx - значение по оси x
+                my - значение по оси y
+                mz - значение по оси z
+        """
         return self._mx, self._my, self._mz
 
     def get_magnetometer_range(self):
+        """!получить диапазон измерений магнетометра
+        @return диапазон измерений магнетометра
+        """
+
         return self._magnetometer_range
 
 
 class Accelerometer(Sensor):
+    """!класс Accelerometer. Наследуется от Sensor.
+    Является базовым для трехосевых акселерометров."""
 
     def __init__(self):
+        """!конструктор класса Accelerometer"""
+
         self._ax = 0
         self._ay = 0
         self._az = 0
         self._accelerometer_range = 0
 
     def setA(self, ax, ay, az):
+        """! установить значения ускорений акселерометра по трем осям
+        @param ax значение по оси x
+        @param ay значение по оси y
+        @param az значение по оси z
+        """
+
         self._ax = ax
         self._ay = ay
         self._az = az
 
     def set_accelerometer_range(self, sensor_range):
+        """!установить диапазон измерений акселерометра
+        @param sensor_range диапазон измерений акселерометра
+        """
+
         self._accelerometer_range = sensor_range
 
     def getA(self):
+        """!получить значения ускорений акселерометра по трем осям
+        @return ax - значение по оси x
+                ay - значение по оси y
+                az - значение по оси z
+        """
         return self._ax, self._ay, self._az
 
     def get_accelerometer_range(self):
+        """!получить диапазон измерений акселерометра
+        @return диапазон измерений акселерометра
+        """
+
         return self._accelerometer_range
 
 
 class Gyroscope(Sensor):
+    """!класс Gyroscope. Наследуется от Sensor.
+    Является базовым для трехосевых гироскопов.
+    """
 
     def __init__(self):
+        """!конструктор класса Gyroscope"""
+
         self._gx = 0
         self._gy = 0
         self._gz = 0
         self._gyroscope_range
 
     def setG(self, gx, gy, gz):
+        """!установить значения угловой скорости гироскопа по трем осям
+        * @param gx значение по оси x
+        * @param gy значение по оси y
+        * @param gz значение по оси z
+        """
+
         self._gx = gx
         self._gy = gy
         self._gz = gz
 
     def set_gyroscope_range(self, sensor_range):
+        """!установить диапазон измерений гироскопа
+        @param sensor_range диапазон измерений гироскопа
+        """
+
         self._gyroscope_range = sensor_range
 
     def getG(self):
+        """!получить значения ускорений гироскопа по трем осям
+        @return gx - значение по оси x
+                gy - значение по оси y
+                gz - значение по оси z
+        """
         return self._gx, self._gy, self._gz
 
     def get_gyroscope_range(self):
+        """!получить диапазон измерений гироскопа
+        @return диапазон измерений гироскопа
+        """
+        
         return self._gyroscope_range
 
 
 class Barometer(Sensor):
+    """!класс Barometer. Наследуется от Sensor.
+    Является базовым для барометров.
+    """
+
     def __init__(self):
+        """!конструктор класса Barometer"""
+
         self._pressure = 0
 
     def setP(self, p):
+        """!установить значение давления
+        @param p значение давление
+        """
+
         self._pressure = p
 
     def getP(self):
+        """!получить значение давления
+        @return значение давления
+        """
+
         return self._pressure
 
 
 class MPU6050(Accelerometer, Gyroscope):
+    """!Класс датчика MPU6050"""
+
     PWR_M = 0x6B
     DIV = 0x19
     CONFIG = 0x1A
@@ -153,6 +258,7 @@ class MPU6050(Accelerometer, Gyroscope):
     MPU6050_ADDR = 0x68
 
     def __init__(self, bus, accel_range=2, gyro_range=250):
+        """!"""
 
         allowed_accel_range = (2, 4, 8, 16)
         allowed_gyro_range = (250, 500, 1000, 2000)
@@ -202,7 +308,7 @@ class MPU6050(Accelerometer, Gyroscope):
         """
         return self.bus.read_byte_data(self.MPU6050_ADDR, self.REG_STATUS)
 
-    def get_raw_data(self, calibrated=False):
+    def get_binary_data(self, calibrated=False):
         """
         reading data registers with values which provided by sensor
         param calibrated: if flag is on, apply calibration params to calculate values
@@ -211,13 +317,13 @@ class MPU6050(Accelerometer, Gyroscope):
             gx, gy, gz - angles of rotation about the axis x, y, z
         """
         buf = self.bus.read_i2c_block_data(self.MPU6050_ADDR, self.ACCEL_XOUT_H, 14)
-        ax = self.get_value(buf[1], buf[0])
-        ay = self.get_value(buf[3], buf[2])
-        az = self.get_value(buf[5], buf[4])
+        ax = self.get_16bit_value(buf[1], buf[0])
+        ay = self.get_16bit_value(buf[3], buf[2])
+        az = self.get_16bit_value(buf[5], buf[4])
 
-        gx = self.get_value(buf[9], buf[8])
-        gy = self.get_value(buf[11], buf[10])
-        gz = self.get_value(buf[13], buf[12])
+        gx = self.get_16bit_value(buf[9], buf[8])
+        gy = self.get_16bit_value(buf[11], buf[10])
+        gz = self.get_16bit_value(buf[13], buf[12])
 
         self.setA(ax, ay, az)
         self.setG(gx, gy, gz)
@@ -226,6 +332,8 @@ class MPU6050(Accelerometer, Gyroscope):
 
 
 class QMC5883(Magnetometer):
+    """!"""
+
     XOUT_LSB = 0x00
     XOUT_MSB = 0x01
     YOUT_LSB = 0x02
@@ -268,6 +376,7 @@ class QMC5883(Magnetometer):
     # INI_FILE = Path(__file__).resolve().parent / 'settings' / 'QMC5883.ini'
 
     def __init__(self, bus, oversampling=512, range=2, rate=100, mode=1):
+        """!"""
 
         allowed_oversampling = (512, 256, 128, 64)
         allowed_range = (2, 8)
@@ -335,7 +444,7 @@ class QMC5883(Magnetometer):
         """
         return self.bus.read_byte_data(QMC5883.ADDRESS, self.REG_STATUS)
 
-    def get_raw_data(self):
+    def get_binary_data(self):
         """
         reading data registers with values which provided by sensor
         param calibrated: if flag is on, apply calibration params to calculate values
@@ -343,9 +452,9 @@ class QMC5883(Magnetometer):
             x, y, z - the projections of the magnetic vector onto the axis x, y, z
         """
         buf = self.bus.read_i2c_block_data(QMC5883.ADDRESS, self.XOUT_LSB, 6)
-        x = Sensor.get_value(buf[0], buf[1])
-        y = Sensor.get_value(buf[2], buf[3])
-        z = Sensor.get_value(buf[4], buf[5])
+        x = Sensor.get_16bit_value(buf[0], buf[1])
+        y = Sensor.get_16bit_value(buf[2], buf[3])
+        z = Sensor.get_16bit_value(buf[4], buf[5])
 
         self.setM(x, y, z)
 
@@ -354,8 +463,11 @@ class QMC5883(Magnetometer):
 
 
 class InertialNavigationSystem:
+    """!"""
 
     def __init__(self):
+        """!"""
+
         self.sensors = {}
 
         self._ax = 0
@@ -382,6 +494,8 @@ class InertialNavigationSystem:
         
 
     def startup_sensors(self, sensors):
+        """!"""
+
         for sensor in sensors:
             if isinstance(sensor, Accelerometer):
                 self.sensors['accelerometer'] = sensor
@@ -407,7 +521,7 @@ class InertialNavigationSystem:
 
         sensors = set(val for val in self.sensors.values())
         for sensor in sensors:
-            sensor.get_raw_data()
+            sensor.get_binary_data()
         ax, ay, az = self.sensors['accelerometer'].getA()
         gx, gy, gz = self.sensors['gyroscope'].getG()
         mx, my, mz = self.sensors['magnetometer'].getM()
@@ -416,6 +530,7 @@ class InertialNavigationSystem:
         self._mx, self._my, self._mz = convert([mx, my, mz], self.sensors['magnetometer'].get_magnetometer_range())
 
     def get_v(self):
+        """!"""
         return self._ax, self._ay, self._az, self._gx, self._gy, self._gz
 
     def __calibrate_magnetometer(self, rounds):

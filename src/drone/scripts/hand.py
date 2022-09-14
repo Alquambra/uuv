@@ -1,3 +1,10 @@
+"""!
+@file hand.py
+@brief Нода руки-хват. Читает сообщение из топика 
+/hand_angle и передает ШИМ-сигнал на пин.
+"""
+
+
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import Int16
@@ -10,8 +17,11 @@ pi = pigpio.pi()
 
 
 def callback(power):
+    """!коллбэк на прочитанное сообщение из топика
+    @param power сообщение std_msgs/Int16
+    """
     pi.set_servo_pulsewidth(12, power.data)
-    print("callback", power.data)
+    # print("callback", power.data)
 
 
 if __name__ == "__main__":

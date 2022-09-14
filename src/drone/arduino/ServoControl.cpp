@@ -1,3 +1,10 @@
+/**
+* @file ServoControl.cpp
+* @brief Программа управления двигателями и освещением
+* на arduino nano. Читает данные из serial
+*/
+
+
 #if (ARDUINO >= 100)
  #include <Arduino.h>
 #else
@@ -11,6 +18,9 @@ const uint8_t engines_quantity = 5;
 const uint8_t pwm_pins[engines_quantity] = {3, 5, 6, 9, 10}; // 1 2 3 4 5
 Servo engines[engines_quantity];
 
+/**
+* @brief последовательность блоков пакета serial
+*/
 enum {
   HEAD_ST,
   LEN_ST,
@@ -18,7 +28,9 @@ enum {
   CRC_ST
 };
 
-
+/**
+* @brief структура пакета serial
+*/
 struct Packet
 {
   char HEAD = 0x55;
@@ -27,6 +39,9 @@ struct Packet
   char crc;
 } pack;
 
+/**
+* @brief структура состояния управления
+*/
 struct PowersPacket
 {
   uint16_t left_alt_power;

@@ -46,7 +46,7 @@ Inheritance diagram for Sensor:</div>
 <area shape="rect" id="node3" href="classMS5837__30BA.html" title="Класс датчика MS5837_30BA. " alt="" coords="5,155,115,181"/>
 <area shape="rect" id="node5" href="classAccelerometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="139,155,245,181"/>
 <area shape="rect" id="node7" href="classGyroscope.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="269,155,355,181"/>
-<area shape="rect" id="node8" href="classMagnetometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="379,155,485,181"/>
+<area shape="rect" id="node8" href="classMagnetometer.html" title="класс Magnetometer. Наследуется от Sensor3Axis. Является базовым д�..." alt="" coords="379,155,485,181"/>
 <area shape="rect" id="node6" href="classMPU6050.html" title="Класс датчика MPU6050. " alt="" coords="212,229,292,256"/>
 <area shape="rect" id="node9" href="classQMC5883.html" title="Класс датчика QMC5883. " alt="" coords="391,229,473,256"/>
 </map>
@@ -58,6 +58,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aab45cef5870c08d9eae7c6fdfbcac7ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">калибровка  <a href="#aab45cef5870c08d9eae7c6fdfbcac7ec">More...</a><br /></td></tr>
 <tr class="separator:aab45cef5870c08d9eae7c6fdfbcac7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb2183fce412e2de49762f345dda9187"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#acb2183fce412e2de49762f345dda9187">get_binary_data</a> ()</td></tr>
+<tr class="memdesc:acb2183fce412e2de49762f345dda9187"><td class="mdescLeft">&#160;</td><td class="mdescRight">чтение двоичных данных из регистров датчика  <a href="#acb2183fce412e2de49762f345dda9187">More...</a><br /></td></tr>
 <tr class="separator:acb2183fce412e2de49762f345dda9187"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bab0d63d54ea557889e484ddbd0d614"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#a5bab0d63d54ea557889e484ddbd0d614">startup</a> ()</td></tr>
 <tr class="memdesc:a5bab0d63d54ea557889e484ddbd0d614"><td class="mdescLeft">&#160;</td><td class="mdescRight">инициализация датчика  <a href="#a5bab0d63d54ea557889e484ddbd0d614">More...</a><br /></td></tr>
@@ -75,7 +76,7 @@ Static Protected Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>класс <a class="el" href="classSensor.html" title="класс Sensor. Является базовым для всех датчиков ...">Sensor</a>. Является базовым для всех датчиков </p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00014">14</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00021">21</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aab45cef5870c08d9eae7c6fdfbcac7ec"></a>
 <div class="memitem">
@@ -103,7 +104,7 @@ Static Protected Member Functions</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMagnetometer.html#a0ba1c2399720d871aa4d4bb74dcb3f99">Magnetometer</a>, <a class="el" href="classGyroscope.html#a860b8d26291fd53040d7eee4fc054f80">Gyroscope</a>, and <a class="el" href="classAccelerometer.html#afbd73ff010013ae45a7099797bb8a841">Accelerometer</a>.</p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00033">33</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00040">40</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -149,7 +150,7 @@ Static Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>действительное значение величины </dd></dl>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00064">64</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00071">71</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -195,7 +196,7 @@ Static Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value 2-х байтовое значение </dd></dl>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00044">44</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00051">51</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -220,9 +221,11 @@ Static Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>чтение двоичных данных из регистров датчика </p>
+
 <p>Reimplemented in <a class="el" href="classMS5837__30BA.html#aadb17a76abd11990867f2d52ec159092">MS5837_30BA</a>, <a class="el" href="classQMC5883.html#a4ba06fb68ff28cb12453028617766380">QMC5883</a>, and <a class="el" href="classMPU6050.html#acda29e04230396872b3e2fc310a52413">MPU6050</a>.</p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00027">27</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00034">34</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -249,7 +252,7 @@ Static Protected Member Functions</h2></td></tr>
 
 <p>инициализация датчика </p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00021">21</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00028">28</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +265,7 @@ Static Protected Member Functions</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/drone">drone</a><br />
 Author(s): </br />
-<small>autogenerated on Tue Sep 13 2022 13:04:50</small>
+<small>autogenerated on Wed Sep 14 2022 11:10:29</small>
 </div>
 </body>
 </html>

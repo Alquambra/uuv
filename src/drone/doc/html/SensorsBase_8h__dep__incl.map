@@ -1,6 +1,5 @@
 <map id="SensorsBase.h" name="SensorsBase.h">
-<area shape="rect" id="node2" href="$sensors_8h.html" title="sensors.h" alt="" coords="150,80,229,107"/>
-<area shape="rect" id="node3" href="$calibration_8cpp.html" title="calibration.cpp" alt="" coords="5,155,112,181"/>
-<area shape="rect" id="node4" href="$navigation_8cpp.html" title="navigation.cpp" alt="" coords="136,155,243,181"/>
-<area shape="rect" id="node5" href="$sensors_8cpp.html" title="sensors.cpp" alt="" coords="267,155,360,181"/>
+<area shape="rect" id="node2" href="$sensors_8h.html" title="Заголовочный файл. Классы для датчиков представленных ..." alt="" coords="81,80,159,107"/>
+<area shape="rect" id="node3" href="$navigation_8cpp.html" title="Нода навигации. Публикует кватернион и глубину в топик ..." alt="" coords="5,155,112,181"/>
+<area shape="rect" id="node4" href="$sensors_8cpp.html" title="Классы для датчиков представленных в навигационном мо�..." alt="" coords="136,155,229,181"/>
 </map>

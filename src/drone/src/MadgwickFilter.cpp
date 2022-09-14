@@ -1,3 +1,11 @@
+/**
+* @file MadgwickFilter.cpp
+* @brief Фильтр Маджвика. Преобразует данные трехосевых датчиков
+* в положение в пространстве выраженное кватернионом
+*/
+
+
+
 #include <math.h>
 #include "drone/MadgwickFilter.h"
 

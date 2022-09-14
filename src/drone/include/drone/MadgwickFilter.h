@@ -1,3 +1,11 @@
+/**
+* @file MadgwickFilter.h
+* @brief Заголовочный файл.Фильтр Маджвика. 
+* Преобразует данные трехосевых датчиков
+* в положение в пространстве выраженное кватернионом.
+*/
+
+
 #if !defined( MADGWICK_FILTER_H )
 #define MADGWICK_FILTER_H
 

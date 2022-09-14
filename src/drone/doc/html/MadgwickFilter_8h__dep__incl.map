@@ -1,4 +1,4 @@
 <map id="MadgwickFilter.h" name="MadgwickFilter.h">
-<area shape="rect" id="node2" href="$MadgwickFilter_8cpp.html" title="MadgwickFilter.cpp" alt="" coords="5,80,140,107"/>
-<area shape="rect" id="node3" href="$navigation_8cpp.html" title="navigation.cpp" alt="" coords="165,80,271,107"/>
+<area shape="rect" id="node2" href="$MadgwickFilter_8cpp.html" title="Фильтр Маджвика. Преобразует данные трехосевых датчик�..." alt="" coords="5,80,140,107"/>
+<area shape="rect" id="node3" href="$navigation_8cpp.html" title="Нода навигации. Публикует кватернион и глубину в топик ..." alt="" coords="165,80,271,107"/>
 </map>

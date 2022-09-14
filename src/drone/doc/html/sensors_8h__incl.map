@@ -1,4 +1,4 @@
 <map id="sensors.h" name="sensors.h">
-<area shape="rect" id="node2" href="$SensorsBase_8h.html" title="SensorsBase.h" alt="" coords="120,80,231,107"/>
-<area shape="rect" id="node6" href="$I2C_8h.html" title="I2C.h" alt="" coords="427,80,481,107"/>
+<area shape="rect" id="node2" href="$SensorsBase_8h.html" title="Заголовочный файл. Базовые классы для датчиков ..." alt="" coords="120,80,231,107"/>
+<area shape="rect" id="node6" href="$I2C_8h.html" title="Заголовочный файл. Класс, предоставляющий API для взаимо..." alt="" coords="427,80,481,107"/>
 </map>

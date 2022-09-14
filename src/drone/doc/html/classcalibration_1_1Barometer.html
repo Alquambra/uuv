@@ -40,7 +40,7 @@ Inheritance diagram for calibration.Barometer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcalibration_1_1Barometer__inherit__graph.png" border="0" usemap="#calibration_8Barometer_inherit__map" alt="Inheritance graph"/></div>
 <map name="calibration_8Barometer_inherit__map" id="calibration_8Barometer_inherit__map">
-<area shape="rect" id="node2" href="classcalibration_1_1Sensor.html" title="calibration.Sensor" alt="" coords="15,5,141,32"/>
+<area shape="rect" id="node2" href="classcalibration_1_1Sensor.html" title="класс Sensor. " alt="" coords="15,5,141,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -53,9 +53,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aca95bb1a75ed531eeae406f0ebb29ebf"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcalibration_1_1Barometer.html#aca95bb1a75ed531eeae406f0ebb29ebf">setP</a> (self, p)</td></tr>
 <tr class="separator:aca95bb1a75ed531eeae406f0ebb29ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classcalibration_1_1Sensor"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcalibration_1_1Sensor')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcalibration_1_1Sensor.html">calibration.Sensor</a></td></tr>
-<tr class="memitem:a0b9d9adf2be40232bc816682bc7af21f inherit pub_methods_classcalibration_1_1Sensor"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcalibration_1_1Sensor.html#a0b9d9adf2be40232bc816682bc7af21f">get_raw_data</a> ()</td></tr>
-<tr class="separator:a0b9d9adf2be40232bc816682bc7af21f inherit pub_methods_classcalibration_1_1Sensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06153b476cf76b4716f0e7356581dffa inherit pub_methods_classcalibration_1_1Sensor"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcalibration_1_1Sensor.html#a06153b476cf76b4716f0e7356581dffa">get_binary_data</a> ()</td></tr>
+<tr class="memdesc:a06153b476cf76b4716f0e7356581dffa inherit pub_methods_classcalibration_1_1Sensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">чтение двоичных данных из регистров датчиков  <a href="#a06153b476cf76b4716f0e7356581dffa">More...</a><br /></td></tr>
+<tr class="separator:a06153b476cf76b4716f0e7356581dffa inherit pub_methods_classcalibration_1_1Sensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a295e335308bd188fb0744f7c66b13c85 inherit pub_methods_classcalibration_1_1Sensor"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcalibration_1_1Sensor.html#a295e335308bd188fb0744f7c66b13c85">startup</a> ()</td></tr>
+<tr class="memdesc:a295e335308bd188fb0744f7c66b13c85 inherit pub_methods_classcalibration_1_1Sensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">инициализация датчика  <a href="#a295e335308bd188fb0744f7c66b13c85">More...</a><br /></td></tr>
 <tr class="separator:a295e335308bd188fb0744f7c66b13c85 inherit pub_methods_classcalibration_1_1Sensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -66,12 +68,13 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_classcalibration_1_1Sensor"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classcalibration_1_1Sensor')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classcalibration_1_1Sensor.html">calibration.Sensor</a></td></tr>
-<tr class="memitem:aa6c9bb924eaf4202669e760f360a56d4 inherit pub_static_methods_classcalibration_1_1Sensor"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcalibration_1_1Sensor.html#aa6c9bb924eaf4202669e760f360a56d4">get_value</a> (low, high)</td></tr>
-<tr class="separator:aa6c9bb924eaf4202669e760f360a56d4 inherit pub_static_methods_classcalibration_1_1Sensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c19d1658ffdc8002c97514189ae3706 inherit pub_static_methods_classcalibration_1_1Sensor"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcalibration_1_1Sensor.html#a4c19d1658ffdc8002c97514189ae3706">get_16bit_value</a> (low, high)</td></tr>
+<tr class="memdesc:a4c19d1658ffdc8002c97514189ae3706 inherit pub_static_methods_classcalibration_1_1Sensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Преобразование старшего и младшего байтов в 16-битное число  <a href="#a4c19d1658ffdc8002c97514189ae3706">More...</a><br /></td></tr>
+<tr class="separator:a4c19d1658ffdc8002c97514189ae3706 inherit pub_static_methods_classcalibration_1_1Sensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="calibration_8py_source.html#l00110">110</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
+<p>Definition at line <a class="el" href="calibration_8py_source.html#l00147">147</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a90f3b57fc91ad34935803f196f010277"></a>
 <div class="memitem">
@@ -87,7 +90,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="calibration_8py_source.html#l00111">111</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
+<p>Definition at line <a class="el" href="calibration_8py_source.html#l00150">150</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
 
 </div>
 </div>
@@ -106,7 +109,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="calibration_8py_source.html#l00117">117</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
+<p>Definition at line <a class="el" href="calibration_8py_source.html#l00158">158</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
 
 </div>
 </div>
@@ -134,7 +137,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="calibration_8py_source.html#l00114">114</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
+<p>Definition at line <a class="el" href="calibration_8py_source.html#l00154">154</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
 
 </div>
 </div>
@@ -157,7 +160,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="calibration_8py_source.html#l00112">112</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
+<p>Definition at line <a class="el" href="calibration_8py_source.html#l00152">152</a> of file <a class="el" href="calibration_8py_source.html">calibration.py</a>.</p>
 
 </div>
 </div>
@@ -170,7 +173,7 @@ Additional Inherited Members</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/drone">drone</a><br />
 Author(s): </br />
-<small>autogenerated on Tue Sep 13 2022 13:04:50</small>
+<small>autogenerated on Wed Sep 14 2022 11:10:29</small>
 </div>
 </body>
 </html>

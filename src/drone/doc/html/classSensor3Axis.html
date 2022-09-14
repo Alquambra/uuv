@@ -43,7 +43,7 @@ Inheritance diagram for Sensor3Axis:</div>
 <map name="Sensor3Axis_inherit__map" id="Sensor3Axis_inherit__map">
 <area shape="rect" id="node3" href="classAccelerometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="5,155,112,181"/>
 <area shape="rect" id="node5" href="classGyroscope.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="136,155,221,181"/>
-<area shape="rect" id="node6" href="classMagnetometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="246,155,351,181"/>
+<area shape="rect" id="node6" href="classMagnetometer.html" title="класс Magnetometer. Наследуется от Sensor3Axis. Является базовым д�..." alt="" coords="246,155,351,181"/>
 <area shape="rect" id="node2" href="classSensor.html" title="класс Sensor. Является базовым для всех датчиков ..." alt="" coords="147,5,210,32"/>
 <area shape="rect" id="node4" href="classMPU6050.html" title="Класс датчика MPU6050. " alt="" coords="79,229,159,256"/>
 <area shape="rect" id="node7" href="classQMC5883.html" title="Класс датчика QMC5883. " alt="" coords="258,229,339,256"/>
@@ -66,6 +66,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aab45cef5870c08d9eae7c6fdfbcac7ec inherit pub_methods_classSensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">калибровка  <a href="#aab45cef5870c08d9eae7c6fdfbcac7ec">More...</a><br /></td></tr>
 <tr class="separator:aab45cef5870c08d9eae7c6fdfbcac7ec inherit pub_methods_classSensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb2183fce412e2de49762f345dda9187 inherit pub_methods_classSensor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#acb2183fce412e2de49762f345dda9187">get_binary_data</a> ()</td></tr>
+<tr class="memdesc:acb2183fce412e2de49762f345dda9187 inherit pub_methods_classSensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">чтение двоичных данных из регистров датчика  <a href="#acb2183fce412e2de49762f345dda9187">More...</a><br /></td></tr>
 <tr class="separator:acb2183fce412e2de49762f345dda9187 inherit pub_methods_classSensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bab0d63d54ea557889e484ddbd0d614 inherit pub_methods_classSensor"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensor.html#a5bab0d63d54ea557889e484ddbd0d614">startup</a> ()</td></tr>
 <tr class="memdesc:a5bab0d63d54ea557889e484ddbd0d614 inherit pub_methods_classSensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">инициализация датчика  <a href="#a5bab0d63d54ea557889e484ddbd0d614">More...</a><br /></td></tr>
@@ -93,7 +94,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>класс <a class="el" href="classSensor3Axis.html" title="класс Sensor3Axis. Наследуется от Sensor. Является базовым для т...">Sensor3Axis</a>. Наследуется от <a class="el" href="classSensor.html" title="класс Sensor. Является базовым для всех датчиков ...">Sensor</a>. Является базовым для трехосевых датчиков. </p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00076">76</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00083">83</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a13255a16065d7fcd476a4e787e2d5160"></a>
 <div class="memitem">
@@ -145,7 +146,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMagnetometer.html#a1d7e334c04418886abf48302e1f07dcc">Magnetometer</a>, <a class="el" href="classGyroscope.html#a3218fd22b9f763f78b52648c3cca4e1c">Gyroscope</a>, and <a class="el" href="classAccelerometer.html#ab372abd9549c2f27fd4aad097a11aa27">Accelerometer</a>.</p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00093">93</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00100">100</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -175,7 +176,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMagnetometer.html#ab14cddb53dd43b9654570b05947b831c">Magnetometer</a>, <a class="el" href="classGyroscope.html#a0581a8b3d2d05d953e303f9bfb2eefe9">Gyroscope</a>, and <a class="el" href="classAccelerometer.html#a94d518e0eaf386834a4f5d4ff877fcc9">Accelerometer</a>.</p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00084">84</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00091">91</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -204,7 +205,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMagnetometer.html#a727ee3c555224874f61c8d038c7a2e69">Magnetometer</a>, <a class="el" href="classGyroscope.html#a4e176dcf98a76bf337163301ee3d07d8">Gyroscope</a>, <a class="el" href="classQMC5883.html#a213cce1d47c500a1bfc497efbb13f6cc">QMC5883</a>, <a class="el" href="classAccelerometer.html#a82a3d245f37d496ebca9b070cd7ae134">Accelerometer</a>, and <a class="el" href="classMPU6050.html#af2f96c0ecd884591f3bae987720b2401">MPU6050</a>.</p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00100">100</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00107">107</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +259,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMagnetometer.html#a003212d9d0e02e55fcb997d72e68fdff">Magnetometer</a>, <a class="el" href="classGyroscope.html#a5dfb9d1e5e002ae99de11b5899878917">Gyroscope</a>, and <a class="el" href="classAccelerometer.html#a4b8e184d71f19bf4ebf2e99bd21dfc45">Accelerometer</a>.</p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00111">111</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00118">118</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -294,7 +295,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classMagnetometer.html#a28beee48fcc3af9fd398d6caa8ff0791">Magnetometer</a>, <a class="el" href="classGyroscope.html#a7ae3c3aa9d66a102bdc5623c74c6a1ec">Gyroscope</a>, and <a class="el" href="classAccelerometer.html#a3dd4fb56cf7a9fe00d2322142049118d">Accelerometer</a>.</p>
 
-<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00118">118</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
+<p>Definition at line <a class="el" href="SensorsBase_8h_source.html#l00125">125</a> of file <a class="el" href="SensorsBase_8h_source.html">SensorsBase.h</a>.</p>
 
 </div>
 </div>
@@ -307,7 +308,7 @@ Additional Inherited Members</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/drone">drone</a><br />
 Author(s): </br />
-<small>autogenerated on Tue Sep 13 2022 13:04:50</small>
+<small>autogenerated on Wed Sep 14 2022 11:10:29</small>
 </div>
 </body>
 </html>

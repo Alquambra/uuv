@@ -1,3 +1,10 @@
+/**
+* @file sensors.cpp
+* @brief Классы для датчиков
+* представленных в навигационном модуле
+*/
+
+
 #include "drone/sensors.h"
 
 

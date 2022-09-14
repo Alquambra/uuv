@@ -1,3 +1,10 @@
+/**
+* @file sensors.h
+* @brief Заголовочный файл. Классы для датчиков
+* представленных в навигационном модуле
+*/
+
+
 #if !defined( SENSORS_H )
 #define SENSORS_H
 
@@ -87,21 +94,21 @@ class MPU6050 : public Accelerometer, public Gyroscope
     public:
 
         /**
-        * @brief
+        * @brief конструктор класса MPU6050
         */
         MPU6050();
 
         /**
         * @brief
-        * @param chosen_accelerometer_range
+        * @param chosen_accelerometer_range 
         * @param chosen_gyroscope_range
         */
         MPU6050(int chosen_accelerometer_range, int chosen_gyroscope_range);
 
         /**
         * @brief 
-        * @param bus
-        * @param fd
+        * @param bus путь к шине i2c
+        * @param fd файловый дескриптор
         */
         void startup(I2C bus, int fd); // Инициализация 
 
@@ -227,7 +234,7 @@ class QMC5883 : public Magnetometer
         /**
         * @brief
         * @param bus
-        * @param fd
+        * @param fd файловый дескриптор
         */
         void startup(I2C bus, int fd);    // Инициализация
         /**
@@ -331,7 +338,7 @@ class MS5837_30BA : public Barometer
         /**
         * @brief
         * @param bus
-        * @param fd
+        * @param fd файловый дескриптор
         */
         bool startup(I2C bus, int fd);                  // Инициализация
         

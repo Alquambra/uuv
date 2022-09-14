@@ -1,3 +1,10 @@
+/**
+* @file SensorsBase.h
+* @brief Заголовочный файл. Базовые классы для 
+* датчиков
+*/
+
+
 #if !defined( SENSORS_BASE_H)
 #define SENSORS_BASE_H
 
@@ -22,7 +29,7 @@ class Sensor
 
 
         /**
-        * @brief
+        * @brief чтение двоичных данных из регистров датчика
         */
         virtual void get_binary_data() {}
 
@@ -240,8 +247,8 @@ class Accelerometer: public Sensor3Axis
 
 
 /**
-* @brief класс Accelerometer. Наследуется от Sensor3Axis.
-* Является базовым для трехосевых акселерометров.
+* @brief класс Gyroscope. Наследуется от Sensor3Axis.
+* Является базовым для трехосевых гироскопов.
 */
 class Gyroscope: public Sensor3Axis
 {
@@ -359,8 +366,8 @@ class Gyroscope: public Sensor3Axis
 
 
 /**
-* @brief класс Accelerometer. Наследуется от Sensor3Axis.
-* Является базовым для трехосевых акселерометров.
+* @brief класс Magnetometer. Наследуется от Sensor3Axis.
+* Является базовым для трехосевых магнетометров.
 */
 class Magnetometer: public Sensor3Axis
 {

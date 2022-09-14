@@ -35,6 +35,9 @@
 <div class="title">ServoControl.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Программа управления двигателями и освещением на arduino nano. Читает данные из serial.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;WProgram.h&gt;</code><br />
 <code>#include &lt;Servo.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -48,8 +51,10 @@ Include dependency graph for ServoControl.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPacket.html">Packet</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">структура пакета serial.  <a href="structPacket.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPowersPacket.html">PowersPacket</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">структура состояния управления  <a href="structPowersPacket.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -58,7 +63,8 @@ Enumerations</h2></td></tr>
 <a class="el" href="ServoControl_8cpp.html#a06fc87d81c62e9abb8790b6e5713c55ba80647ec724bda172147eb14e60aa4875">LEN_ST</a>, 
 <a class="el" href="ServoControl_8cpp.html#a06fc87d81c62e9abb8790b6e5713c55ba4993c4c0b260e41325ffaa93b41ed735">DATA_ST</a>, 
 <a class="el" href="ServoControl_8cpp.html#a06fc87d81c62e9abb8790b6e5713c55ba011c196a652556151bdd3b95c9adb472">CRC_ST</a>
- }</td></tr>
+ }<tr class="memdesc:a06fc87d81c62e9abb8790b6e5713c55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">последовательность блоков пакета serial.  <a href="ServoControl_8cpp.html#a06fc87d81c62e9abb8790b6e5713c55b">More...</a><br /></td></tr>
+</td></tr>
 <tr class="separator:a06fc87d81c62e9abb8790b6e5713c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -93,7 +99,11 @@ Variables</h2></td></tr>
 <tr class="memitem:a89f234133d3efe315836311cbf21c64b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ServoControl_8cpp.html#a89f234133d3efe315836311cbf21c64b">state</a> = 0</td></tr>
 <tr class="separator:a89f234133d3efe315836311cbf21c64b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Программа управления двигателями и освещением на arduino nano. Читает данные из serial. </p>
+
+<p>Definition in file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="a06fc87d81c62e9abb8790b6e5713c55b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -103,6 +113,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>последовательность блоков пакета serial. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a06fc87d81c62e9abb8790b6e5713c55bad3eadc4c14b670d8c12a0d15406a9049"></a>HEAD_ST&#160;</td><td class="fielddoc">
 </td></tr>
@@ -114,7 +126,7 @@ Variables</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00014">14</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00024">24</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -132,7 +144,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00140">140</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00155">155</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -150,7 +162,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00048">48</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00063">63</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -167,7 +179,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00125">125</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00140">140</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -184,7 +196,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00134">134</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00149">149</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,7 +211,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00044">44</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00059">59</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -213,7 +225,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00012">12</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00019">19</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -227,7 +239,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00010">10</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00017">17</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -241,7 +253,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00042">42</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00057">57</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -279,7 +291,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00011">11</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00018">18</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -293,7 +305,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00045">45</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00060">60</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -307,7 +319,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00043">43</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
+<p>Definition at line <a class="el" href="ServoControl_8cpp_source.html#l00058">58</a> of file <a class="el" href="ServoControl_8cpp_source.html">ServoControl.cpp</a>.</p>
 
 </div>
 </div>
@@ -317,7 +329,7 @@ Variables</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/drone">drone</a><br />
 Author(s): </br />
-<small>autogenerated on Tue Sep 13 2022 13:04:49</small>
+<small>autogenerated on Wed Sep 14 2022 11:10:29</small>
 </div>
 </body>
 </html>
