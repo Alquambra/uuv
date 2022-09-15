@@ -3,7 +3,7 @@
 <area shape="rect" id="node4" href="$classSensor3Axis.html" title="класс Sensor3Axis. Наследуется от Sensor. Является базовым для т..." alt="" coords="204,80,300,107"/>
 <area shape="rect" id="node3" href="$classMS5837__30BA.html" title="Класс датчика MS5837_30BA. " alt="" coords="5,155,115,181"/>
 <area shape="rect" id="node5" href="$classAccelerometer.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="139,155,245,181"/>
-<area shape="rect" id="node7" href="$classGyroscope.html" title="класс Accelerometer. Наследуется от Sensor3Axis. Является базовым д..." alt="" coords="269,155,355,181"/>
+<area shape="rect" id="node7" href="$classGyroscope.html" title="класс Gyroscope. Наследуется от Sensor3Axis. Является базовым для..." alt="" coords="269,155,355,181"/>
 <area shape="rect" id="node8" href="$classMagnetometer.html" title="класс Magnetometer. Наследуется от Sensor3Axis. Является базовым д�..." alt="" coords="379,155,485,181"/>
 <area shape="rect" id="node6" href="$classMPU6050.html" title="Класс датчика MPU6050. " alt="" coords="212,229,292,256"/>
 <area shape="rect" id="node9" href="$classQMC5883.html" title="Класс датчика QMC5883. " alt="" coords="391,229,473,256"/>

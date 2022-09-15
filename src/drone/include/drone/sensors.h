@@ -99,41 +99,41 @@ class MPU6050 : public Accelerometer, public Gyroscope
         MPU6050();
 
         /**
-        * @brief
-        * @param chosen_accelerometer_range 
-        * @param chosen_gyroscope_range
+        * @brief конструктор класса MPU6050
+        * @param chosen_accelerometer_range ввод диапазона измерений акселерометра 
+        * @param chosen_gyroscope_range ввод диапазона измерений гироскопа
         */
         MPU6050(int chosen_accelerometer_range, int chosen_gyroscope_range);
 
         /**
-        * @brief 
+        * @brief инициализация датчика MPU6050
         * @param bus путь к шине i2c
         * @param fd файловый дескриптор
         */
         void startup(I2C bus, int fd); // Инициализация 
 
         /**
-        * @brief
-        * @return
+        * @brief чтение регистра статуса датчика MPU6050
+        * @return статус датчика MPU6050
         */
         char read_status();            // Чтение статуса 
         /**
-        * @brief
+        * @brief чтение блока бинарных данных 
         */
-        void get_binary_data();           // Чтение сырых битовых данных
+        void get_binary_data();           // Чтение сырых бинарных данных
 
         /**
-        * @brief
+        * @brief преобразование бинарных данных в действительные величины
         */
-        void get_sample()              // Преобразование битовых данных в реальные величины
+        void get_sample()              // Преобразование бинарных данных в реальные величины
         {
             Accelerometer::get_sample();
             Gyroscope::get_sample();
         }
         
         /**
-        * @brief
-        * @param rounds
+        * @brief калибровка датчика MPU6050
+        * @param rounds количество измерений
         */
         void calibration(int rounds);  // Калибровка
 };
@@ -218,38 +218,38 @@ class QMC5883 : public Magnetometer
         char oversampling, range, rate, mode;
 
         /**
-        * @brief
+        * @brief конструктор класса QMC5883
         */
         QMC5883();
 
         /**
-        * @brief
-        * @param chosen_oversampling
-        * @param chosen_range
-        * @param chosen_rate
-        * @param chosen_mode
+        * @brief конструктор класса QMC5883
+        * @param chosen_oversampling количество измерений перед отправкой нового значения
+        * @param chosen_range диапазон измерений датчика
+        * @param chosen_rate частота измерений датчика
+        * @param chosen_mode режим работы датчика 
         */
         QMC5883(int chosen_oversampling, int chosen_range, int chosen_rate, int chosen_mode);
 
         /**
         * @brief
-        * @param bus
+        * @param bus путь к шине i2c
         * @param fd файловый дескриптор
         */
         void startup(I2C bus, int fd);    // Инициализация
         /**
-        * @brief
-        * @return
+        * @brief чтение регистра статуса датчика QMC5883
+        * @return статус датчика QMC5883
         */
         char read_status();               // Чтение статуса
         /**
-        * @brief
+        * @brief чтение блока бинарных данных
         */
-        void get_binary_data();              // Чтение сырых битовых данных
+        void get_binary_data();              // Чтение сырых бинарных данных
         /**
-        * @brief
+        * @brief преобразование бинарных данных в действительные величины
         */
-        void get_sample()                 // Преобразование битовых данных в реальные величины
+        void get_sample()                 // Преобразование бинарных данных в реальные величины
         {
             Magnetometer::get_sample();
         }
@@ -260,9 +260,6 @@ class QMC5883 : public Magnetometer
 */
 class MS5837_30BA : public Barometer
 {
-
-    
-
     // ----------------------------------
 
     /*
@@ -309,19 +306,23 @@ class MS5837_30BA : public Barometer
         double Temperature;
         float conversion;
         /**
-        * @brief
-        * @param n_prom
+        * @brief проверка контрольной суммы
+        * @param n_prom массив с калибровочными данными датчика
         */
         unsigned char _crc4(unsigned int n_prom[]);     // Проверка контрольной суммы
         /**
-        * @brief
-        * @param Temperature
+        * @brief установка температуры в Цельсиях
+        * @param Temperature температура в Цельсиях
         */
         void setT(float Temperature)
         {
             this->Temperature = Temperature;
         }
-        void calculate(unsigned long, unsigned long);   // Преобразование битовых данных в реальные величины
+
+        /**
+        * @brief расчет давления и температуры
+        */
+        void calculate(unsigned long, unsigned long);   // Преобразование бинарных данных в реальные величины
 
     public:
     
@@ -331,25 +332,25 @@ class MS5837_30BA : public Barometer
         unsigned int C[8];
 
         /**
-        * @brief
+        * @brief конструктор класса MS5837_30BA
         */
         MS5837_30BA() : Barometer::Barometer() {}
         
         /**
-        * @brief
-        * @param bus
+        * @brief инициализация датчика MS5837_30BA
+        * @param bus путь к шине i2c
         * @param fd файловый дескриптор
         */
         bool startup(I2C bus, int fd);                  // Инициализация
         
         /**
-        * @brief
+        * @brief чтение бинарных данных из датчика
         */
-        void get_binary_data();                            // Чтение сырых битовых данных
+        void get_binary_data();                            // Чтение сырых бинарных данных
 
         /**
-        * @brief
-        * @param conversion
+        * @brief установить коэффициент преобразования давления к единицам измерения (Па, бар, мбар, кПа)
+        * @param conversion коэффициент преобразования давления к единицам измерения (Па, бар, мбар, кПа)
         */
         void set_conversion(float conversion = Pa)
         {
@@ -357,8 +358,8 @@ class MS5837_30BA : public Barometer
         }
         
         /**
-        * @brief
-        * @return 
+        * @brief получение температуры в Цельсиях
+        * @return температура в Цельсиях
         */
         float getT()
         {

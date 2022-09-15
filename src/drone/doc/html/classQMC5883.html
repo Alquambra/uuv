@@ -59,16 +59,19 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4ba06fb68ff28cb12453028617766380"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQMC5883.html#a4ba06fb68ff28cb12453028617766380">get_binary_data</a> ()</td></tr>
-<tr class="memdesc:a4ba06fb68ff28cb12453028617766380"><td class="mdescLeft">&#160;</td><td class="mdescRight">чтение двоичных данных из регистров датчика  <a href="#a4ba06fb68ff28cb12453028617766380">More...</a><br /></td></tr>
+<tr class="memdesc:a4ba06fb68ff28cb12453028617766380"><td class="mdescLeft">&#160;</td><td class="mdescRight">чтение блока бинарных данных  <a href="#a4ba06fb68ff28cb12453028617766380">More...</a><br /></td></tr>
 <tr class="separator:a4ba06fb68ff28cb12453028617766380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a213cce1d47c500a1bfc497efbb13f6cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQMC5883.html#a213cce1d47c500a1bfc497efbb13f6cc">get_sample</a> ()</td></tr>
-<tr class="memdesc:a213cce1d47c500a1bfc497efbb13f6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">преобразовать значения измерений датчика по трем осям от двоичных к действительным  <a href="#a213cce1d47c500a1bfc497efbb13f6cc">More...</a><br /></td></tr>
+<tr class="memdesc:a213cce1d47c500a1bfc497efbb13f6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">преобразование бинарных данных в действительные величины  <a href="#a213cce1d47c500a1bfc497efbb13f6cc">More...</a><br /></td></tr>
 <tr class="separator:a213cce1d47c500a1bfc497efbb13f6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f537b033ce95a218b9cdfebe05cb955"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQMC5883.html#a5f537b033ce95a218b9cdfebe05cb955">QMC5883</a> ()</td></tr>
+<tr class="memdesc:a5f537b033ce95a218b9cdfebe05cb955"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор класса <a class="el" href="classQMC5883.html" title="Класс датчика QMC5883. ">QMC5883</a>.  <a href="#a5f537b033ce95a218b9cdfebe05cb955">More...</a><br /></td></tr>
 <tr class="separator:a5f537b033ce95a218b9cdfebe05cb955"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab150985599aa0a847f86635fccc9678f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQMC5883.html#ab150985599aa0a847f86635fccc9678f">QMC5883</a> (int chosen_oversampling, int chosen_range, int chosen_rate, int chosen_mode)</td></tr>
+<tr class="memdesc:ab150985599aa0a847f86635fccc9678f"><td class="mdescLeft">&#160;</td><td class="mdescRight">конструктор класса <a class="el" href="classQMC5883.html" title="Класс датчика QMC5883. ">QMC5883</a>.  <a href="#ab150985599aa0a847f86635fccc9678f">More...</a><br /></td></tr>
 <tr class="separator:ab150985599aa0a847f86635fccc9678f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9ecc1645a3725e46508d57fd7f4b17b"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQMC5883.html#ac9ecc1645a3725e46508d57fd7f4b17b">read_status</a> ()</td></tr>
+<tr class="memdesc:ac9ecc1645a3725e46508d57fd7f4b17b"><td class="mdescLeft">&#160;</td><td class="mdescRight">чтение регистра статуса датчика <a class="el" href="classQMC5883.html" title="Класс датчика QMC5883. ">QMC5883</a>.  <a href="#ac9ecc1645a3725e46508d57fd7f4b17b">More...</a><br /></td></tr>
 <tr class="separator:ac9ecc1645a3725e46508d57fd7f4b17b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adad78c720e7730451324b8d1a79bde72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQMC5883.html#adad78c720e7730451324b8d1a79bde72">startup</a> (<a class="el" href="classI2C.html">I2C</a> <a class="el" href="classQMC5883.html#a4a8667a620dd64839ff8769153eabd69">bus</a>, int <a class="el" href="classQMC5883.html#a07e11f3ab8634927856433fc30908f67">fd</a>)</td></tr>
 <tr class="separator:adad78c720e7730451324b8d1a79bde72"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,6 +226,8 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>конструктор класса <a class="el" href="classQMC5883.html" title="Класс датчика QMC5883. ">QMC5883</a>. </p>
+
 <p>Definition at line <a class="el" href="sensors_8cpp_source.html#l00152">152</a> of file <a class="el" href="sensors_8cpp_source.html">sensors.cpp</a>.</p>
 
 </div>
@@ -262,12 +267,14 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>конструктор класса <a class="el" href="classQMC5883.html" title="Класс датчика QMC5883. ">QMC5883</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">chosen_oversampling</td><td></td></tr>
-    <tr><td class="paramname">chosen_range</td><td></td></tr>
-    <tr><td class="paramname">chosen_rate</td><td></td></tr>
-    <tr><td class="paramname">chosen_mode</td><td></td></tr>
+    <tr><td class="paramname">chosen_oversampling</td><td>количество измерений перед отправкой нового значения </td></tr>
+    <tr><td class="paramname">chosen_range</td><td>диапазон измерений датчика </td></tr>
+    <tr><td class="paramname">chosen_rate</td><td>частота измерений датчика </td></tr>
+    <tr><td class="paramname">chosen_mode</td><td>режим работы датчика </td></tr>
   </table>
   </dd>
 </dl>
@@ -298,7 +305,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>чтение двоичных данных из регистров датчика </p>
+<p>чтение блока бинарных данных </p>
 
 <p>Reimplemented from <a class="el" href="classSensor.html#acb2183fce412e2de49762f345dda9187">Sensor</a>.</p>
 
@@ -327,7 +334,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>преобразовать значения измерений датчика по трем осям от двоичных к действительным </p>
+<p>преобразование бинарных данных в действительные величины </p>
 
 <p>Reimplemented from <a class="el" href="classSensor3Axis.html#aa8b7fbf68f7796463a10a438b1cb7480">Sensor3Axis</a>.</p>
 
@@ -347,7 +354,9 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>чтение регистра статуса датчика <a class="el" href="classQMC5883.html" title="Класс датчика QMC5883. ">QMC5883</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>статус датчика <a class="el" href="classQMC5883.html" title="Класс датчика QMC5883. ">QMC5883</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="sensors_8cpp_source.html#l00238">238</a> of file <a class="el" href="sensors_8cpp_source.html">sensors.cpp</a>.</p>
 
@@ -378,8 +387,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">bus</td><td></td></tr>
-    <tr><td class="paramname">fd</td><td></td></tr>
+    <tr><td class="paramname">bus</td><td>путь к шине i2c </td></tr>
+    <tr><td class="paramname">fd</td><td>файловый дескриптор </td></tr>
   </table>
   </dd>
 </dl>
@@ -1099,7 +1108,7 @@ Additional Inherited Members</h2></td></tr>
 <hr size="1"><div style="align: right;">
 <a href="http://wiki.ros.org/drone">drone</a><br />
 Author(s): </br />
-<small>autogenerated on Wed Sep 14 2022 11:10:29</small>
+<small>autogenerated on Thu Sep 15 2022 09:18:31</small>
 </div>
 </body>
 </html>

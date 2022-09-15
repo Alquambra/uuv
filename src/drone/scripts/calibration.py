@@ -258,7 +258,11 @@ class MPU6050(Accelerometer, Gyroscope):
     MPU6050_ADDR = 0x68
 
     def __init__(self, bus, accel_range=2, gyro_range=250):
-        """!"""
+        """!констркутор класса MPU6050
+        @param bus шина i2c
+        @param accel_range диапазон измерений акселерометра
+        @param gyro_range диапазон измерений гироскопа
+        """
 
         allowed_accel_range = (2, 4, 8, 16)
         allowed_gyro_range = (250, 500, 1000, 2000)
@@ -291,9 +295,8 @@ class MPU6050(Accelerometer, Gyroscope):
         self.set_gyroscope_range(float(gyro_range))
 
     def startup(self):
-        """
-        Configuring Sensor with writing values to configure registers
-        """
+        """!инициализация датчика MPU6050"""
+
         self.bus.write_byte_data(self.MPU6050_ADDR, self.DIV, 7)
         self.bus.write_byte_data(self.MPU6050_ADDR, self.PWR_M, 1)
         self.bus.write_byte_data(self.MPU6050_ADDR, self.CONFIG, 0)
@@ -303,19 +306,19 @@ class MPU6050(Accelerometer, Gyroscope):
         rospy.sleep(1)
 
     def read_status(self):
+        """!Чтение регистра статуса датчика MPU6050
+        @return статус датчика MPU6050
         """
-        Read status register of sensor
-        """
+
         return self.bus.read_byte_data(self.MPU6050_ADDR, self.REG_STATUS)
 
-    def get_binary_data(self, calibrated=False):
+    def get_binary_data(self):
+        """!Чтение бинарных данных датчика MPU6050
+        @return:
+            ax, ay, az - проекции вектора ускорения на оси x, y, z
+            gx, gy, gz - угловая скорость вокруг осей x, y, z
         """
-        reading data registers with values which provided by sensor
-        param calibrated: if flag is on, apply calibration params to calculate values
-        return:
-            ax, ay, az - the projections of the gravity vector onto the axis x, y, z
-            gx, gy, gz - angles of rotation about the axis x, y, z
-        """
+
         buf = self.bus.read_i2c_block_data(self.MPU6050_ADDR, self.ACCEL_XOUT_H, 14)
         ax = self.get_16bit_value(buf[1], buf[0])
         ay = self.get_16bit_value(buf[3], buf[2])
@@ -332,7 +335,7 @@ class MPU6050(Accelerometer, Gyroscope):
 
 
 class QMC5883(Magnetometer):
-    """!"""
+    """!класс датчика QMC5883"""
 
     XOUT_LSB = 0x00
     XOUT_MSB = 0x01
@@ -376,7 +379,13 @@ class QMC5883(Magnetometer):
     # INI_FILE = Path(__file__).resolve().parent / 'settings' / 'QMC5883.ini'
 
     def __init__(self, bus, oversampling=512, range=2, rate=100, mode=1):
-        """!"""
+        """!конструктор класса QMC5883
+        @param bus шина i2c
+        @param oversampling количество измерений перед отправкой нового значения
+        @param range диапазон измерений датчика
+        @param rate частота измерений датчика
+        @param mode режим работы датчика
+        """
 
         allowed_oversampling = (512, 256, 128, 64)
         allowed_range = (2, 8)
@@ -429,9 +438,8 @@ class QMC5883(Magnetometer):
         self.set_magnetometer_range(float(range))
 
     def startup(self):
-        """
-        Configuring Sensor with writing values to configure registers
-        """
+        """!инициализация датчика QMC5883"""
+
         self.bus.write_byte_data(QMC5883.ADDRESS, QMC5883.REG_CONTROL_1,
                                  self.oversampling_config | self.range_config | self.rate_config | self.mode_config)
         self.bus.write_byte_data(QMC5883.ADDRESS, QMC5883.REG_CONTROL_2, QMC5883.CONFIG2_ROL_PTR)
@@ -439,18 +447,18 @@ class QMC5883(Magnetometer):
         rospy.sleep(1)
 
     def read_status(self):
+        """!чтение регистра статуса QMC5883
+        @return статус датчика QMC5883
         """
-        Read status register of sensor
-        """
+
         return self.bus.read_byte_data(QMC5883.ADDRESS, self.REG_STATUS)
 
     def get_binary_data(self):
+        """!Чтение бинарных данных датчика QMC5883
+        @return:
+            x, y, z - проекция вектора магнитной индукции на оси x, y, z
         """
-        reading data registers with values which provided by sensor
-        param calibrated: if flag is on, apply calibration params to calculate values
-        return:
-            x, y, z - the projections of the magnetic vector onto the axis x, y, z
-        """
+
         buf = self.bus.read_i2c_block_data(QMC5883.ADDRESS, self.XOUT_LSB, 6)
         x = Sensor.get_16bit_value(buf[0], buf[1])
         y = Sensor.get_16bit_value(buf[2], buf[3])
@@ -463,10 +471,12 @@ class QMC5883(Magnetometer):
 
 
 class InertialNavigationSystem:
-    """!"""
+    """!класс InertialNavigationSystem. Объединяет в одну систему
+    акселерометр, магнетометр и гироскоп.
+    """
 
     def __init__(self):
-        """!"""
+        """!конструктор класса InertialNavigationSystem"""
 
         self.sensors = {}
 
@@ -494,7 +504,9 @@ class InertialNavigationSystem:
         
 
     def startup_sensors(self, sensors):
-        """!"""
+        """!инициализация датчиков системы
+        @param sensors массив с объектами датчиков
+        """
 
         for sensor in sensors:
             if isinstance(sensor, Accelerometer):
@@ -510,9 +522,7 @@ class InertialNavigationSystem:
             raise Warning
 
     def set_real_sensor_values(self):
-        """
-        convert raw binary sensor values into decimal unit system
-        """
+        """!преобразование бинарных данных датчиков к действительным величинам"""
 
         def convert(data, sensor_range):
             for index in range(len(data)):
@@ -529,15 +539,12 @@ class InertialNavigationSystem:
         self._gx, self._gy, self._gz = convert([gx, gy, gz], self.sensors['gyroscope'].get_gyroscope_range())
         self._mx, self._my, self._mz = convert([mx, my, mz], self.sensors['magnetometer'].get_magnetometer_range())
 
-    def get_v(self):
-        """!"""
-        return self._ax, self._ay, self._az, self._gx, self._gy, self._gz
 
     def __calibrate_magnetometer(self, rounds):
+        """!калибровка магнетометра
+        @param rounds количество измерений
         """
-        Magnetometer calibration
-        rounds: number of read cycles
-        """
+
         xmin, ymin, zmin = 32767, 32767, 32767
         xmax, ymax, zmax = -32768, -32768, -32768
         print("Rotate compass")
@@ -584,10 +591,10 @@ class InertialNavigationSystem:
             yaml.dump(conf, f, default_flow_style=False)
 
     def __calibrate_gyroscope_and_accelerometer(self, rounds):
+        """!калибровка акселерометра и гироскопа
+        @param rounds количество измерений
         """
-        Gyroscope and accelerometer calibration
-        rounds: number of read cycles
-        """
+
         gxcal, gycal, gzcal = 0, 0, 0
         axcal, aycal, azcal = 0, 0, 0
         print("Keep gyroscope steady")
@@ -630,9 +637,8 @@ class InertialNavigationSystem:
             yaml.dump(conf, f, default_flow_style=False)
 
     def configure_system(self):
-        """
-        System setup
-        """
+        """!полная калибровка системы"""
+
         self.__calibrate_magnetometer(600)
         self.__calibrate_gyroscope_and_accelerometer(600)
         # self.__compute_std(1000)

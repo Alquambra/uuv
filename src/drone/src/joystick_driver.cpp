@@ -57,6 +57,7 @@ int main(int argc, char **argv)
 
      while(ros::ok())
      {
+        cout << "incoming msg" << endl;
         recvfrom(sockfd,esp8266_data,len,0,(struct sockaddr *)&client,&l);
 
         drone::Joystick msg;
