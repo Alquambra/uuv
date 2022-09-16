@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+
 """!
 @file calibration.py 
 @brief Скрипт калибровки датчиков навигационного модуля: 
@@ -10,10 +15,6 @@
 """
 
 
-
-
-
-#!/usr/bin/env python
 from abc import abstractmethod
 import smbus
 import os

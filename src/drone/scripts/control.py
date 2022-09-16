@@ -1,11 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """!
 @file control.py
 @brief Система управления дроном. Пид-регулятор. 
 Для работы необходим активированный пульт.
 """
 
-
-#!/usr/bin/env python
 import rospy
 import message_filters
 import serial
@@ -93,7 +94,7 @@ class PID:
 
 
 class Control:
-"""! класс Control. Реализует систему управления."""
+    """!класс Control. Реализует систему управления."""
 
     def __init__(self):
         """! конструктор класса Control"""
@@ -227,8 +228,8 @@ class Control:
             divisor = 1
 
         stabilization_on = not (joystick_msg.State & 0b00000001)
-        self.powers_msg.lock = (joystick_msg.State & 0b00000010) >> 1
-        self.serial_frame["data"][6] = self.powers_msg.lock
+        # self.powers_msg.lock = (joystick_msg.State & 0b00000010) >> 1
+        self.serial_frame["data"][6] = (joystick_msg.State & 0b00000010) >> 1
         yaw_on = (joystick_msg.State & 0b00001000) >> 3
         tangage_on = (joystick_msg.State & 0b00010000) >> 4
 

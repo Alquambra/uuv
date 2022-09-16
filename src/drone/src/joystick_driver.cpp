@@ -41,16 +41,16 @@ int main(int argc, char **argv)
 
      serv.sin_family = AF_INET;
      serv.sin_port = htons(1234);
-    //  serv.sin_addr.s_addr = inet_addr("192.168.1.84");
+    // serv.sin_addr.s_addr = inet_addr("192.168.1.84");
     serv.sin_addr.s_addr = inet_addr("192.168.88.1");
 
 
      bind(sockfd,(struct sockaddr *)&serv,sizeof(serv));
 
-     unsigned char esp8266_data[128];
+     unsigned char esp8266_data[64];
      socklen_t l = sizeof(client);
      socklen_t m = sizeof(serv);
-     int len = 128;
+     int len = 64;
 
     cout << "Client started" << endl;
 

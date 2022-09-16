@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 """!
 @file hand.py
 @brief Нода руки-хват. Читает сообщение из топика 
@@ -5,7 +9,6 @@
 """
 
 
-#!/usr/bin/env python
 import rospy
 from std_msgs.msg import Int16
 from RPi import GPIO
