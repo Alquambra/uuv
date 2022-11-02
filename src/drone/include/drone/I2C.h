@@ -7,6 +7,7 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <iostream>
 
 
 class I2C
@@ -14,13 +15,14 @@ class I2C
     public:
 
         char *i2c_bus;
+        int fd;
         I2C();
-        I2C(char*);
-        int  selectDevice(int, int, char*);
-        bool i2c_write(int, int);
-        void i2c_write_register(int, int, int);
-        int  i2c_read_register(int, int);
-        bool i2c_read_block(int, unsigned char *, int);
+        I2C(char*, int);
+        int  selectDevice(int, char*);
+        bool i2c_write(int);
+        void i2c_write_register(int, int);
+        int  i2c_read_register(int);
+        bool i2c_read_block(unsigned char *, int);
 };
 
 #endif

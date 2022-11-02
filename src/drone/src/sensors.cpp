@@ -50,35 +50,34 @@ MPU6050::MPU6050(int chosen_accelerometer_range, int chosen_gyroscope_range) : A
     this->Gyroscope::set_range(chosen_gyroscope_range);
 }
 
-void MPU6050::startup(I2C bus, int fd)
+void MPU6050::startup(I2C bus)
 {
     this->bus = bus;
-    this->fd = fd;
-    this->bus.selectDevice(this->fd, MPU6050_ADDR, "MPU6050");
+    this->bus.selectDevice(MPU6050_ADDR, "MPU6050");
 
-    this->bus.i2c_write_register(this->fd, DIV, 7);
-    this->bus.i2c_write_register(this->fd, PWR_M, 0);
-    this->bus.i2c_write_register(this->fd, CONFIG, 0);
-    this->bus.i2c_write_register(this->fd, GYRO_CONFIG, this->gyroscope_range_configuration);
-    this->bus.i2c_write_register(this->fd, ACCEL_CONFIG, this->accelerometer_range_configuration);
-    this->bus.i2c_write_register(this->fd, INT_EN, 1);
+    this->bus.i2c_write_register(DIV, 7);
+    this->bus.i2c_write_register(PWR_M, 0);
+    this->bus.i2c_write_register(CONFIG, 0);
+    this->bus.i2c_write_register(GYRO_CONFIG, this->gyroscope_range_configuration);
+    this->bus.i2c_write_register(ACCEL_CONFIG, this->accelerometer_range_configuration);
+    this->bus.i2c_write_register(INT_EN, 1);
 }
 
 void MPU6050::get_binary_data()
 {
-    this->bus.selectDevice(this->fd, MPU6050_ADDR, "QMC5883");
+    this->bus.selectDevice(MPU6050_ADDR, "MPU6050");
 
     float x, y, z;
 
-    x = get_16bit_value(bus.i2c_read_register(fd, ACCEL_XOUT_L), bus.i2c_read_register(fd, ACCEL_XOUT_H));
-    y = get_16bit_value(bus.i2c_read_register(fd, ACCEL_YOUT_L), bus.i2c_read_register(fd, ACCEL_YOUT_H));
-    z = get_16bit_value(bus.i2c_read_register(fd, ACCEL_ZOUT_L), bus.i2c_read_register(fd, ACCEL_ZOUT_H));
+    x = get_16bit_value(bus.i2c_read_register(ACCEL_XOUT_L), bus.i2c_read_register(ACCEL_XOUT_H));
+    y = get_16bit_value(bus.i2c_read_register(ACCEL_YOUT_L), bus.i2c_read_register(ACCEL_YOUT_H));
+    z = get_16bit_value(bus.i2c_read_register(ACCEL_ZOUT_L), bus.i2c_read_register(ACCEL_ZOUT_H));
 
     Accelerometer::set_3d_mgnitude(x, y, z);
 
-    x = get_16bit_value(bus.i2c_read_register(fd, GYRO_XOUT_L), bus.i2c_read_register(fd, GYRO_XOUT_H));
-    y = get_16bit_value(bus.i2c_read_register(fd, GYRO_YOUT_L), bus.i2c_read_register(fd, GYRO_YOUT_H));
-    z = get_16bit_value(bus.i2c_read_register(fd, GYRO_ZOUT_L), bus.i2c_read_register(fd, GYRO_ZOUT_H));
+    x = get_16bit_value(bus.i2c_read_register(GYRO_XOUT_L), bus.i2c_read_register(GYRO_XOUT_H));
+    y = get_16bit_value(bus.i2c_read_register(GYRO_YOUT_L), bus.i2c_read_register(GYRO_YOUT_H));
+    z = get_16bit_value(bus.i2c_read_register(GYRO_ZOUT_L), bus.i2c_read_register(GYRO_ZOUT_H));
 
     Gyroscope::set_3d_mgnitude(x, y, z);
 }
@@ -213,60 +212,56 @@ QMC5883::QMC5883( int chosen_oversampling, int chosen_range, int chosen_rate, in
 }
 
 
-void QMC5883::startup(I2C bus, int fd)
+void QMC5883::startup(I2C bus)
 {
     this->bus = bus;
-    this->fd = fd;
 
-    this->bus.selectDevice(this->fd, QMC5883_ADDRESS, "QMC5883");
+    this->bus.selectDevice(QMC5883_ADDRESS, "QMC5883");
 
-    // this->bus.writeRegister(this->fd, REG_CONTROL_1, oversampling | range | rate | mode);
-    this->bus.i2c_write_register(this->fd, REG_CONTROL_1, 0x01);
-    // this->bus.writeRegister(this->fd, REG_CONTROL_2, CONFIG2_ROL_PTR);
-    this->bus.i2c_write_register(this->fd, REG_CONTROL_2, 0x50);
-    this->bus.i2c_write_register(this->fd, REG_PERIOD, 0x01);
+    this->bus.i2c_write_register(REG_CONTROL_1, 0x01);
+    this->bus.i2c_write_register(REG_CONTROL_2, 0x50);
+    this->bus.i2c_write_register(REG_PERIOD, 0x01);
 }
 
 
 char QMC5883::read_status()
 {
-    return bus.i2c_read_register(fd, REG_STATUS);
+    return bus.i2c_read_register(REG_STATUS);
 }
 
 
 void QMC5883::get_binary_data()
 {
-    this->bus.selectDevice(this->fd, QMC5883_ADDRESS, "QMC5883");
+    this->bus.selectDevice(QMC5883_ADDRESS, "QMC5883");
 
     float x, y, z;
 
-    x = get_16bit_value(bus.i2c_read_register(fd, XOUT_LSB), bus.i2c_read_register(fd, XOUT_MSB));
-    y = get_16bit_value(bus.i2c_read_register(fd, YOUT_LSB), bus.i2c_read_register(fd, YOUT_MSB));
-    z = get_16bit_value(bus.i2c_read_register(fd, ZOUT_LSB), bus.i2c_read_register(fd, ZOUT_MSB));
+    x = get_16bit_value(bus.i2c_read_register(XOUT_LSB), bus.i2c_read_register(XOUT_MSB));
+    y = get_16bit_value(bus.i2c_read_register(YOUT_LSB), bus.i2c_read_register(YOUT_MSB));
+    z = get_16bit_value(bus.i2c_read_register(ZOUT_LSB), bus.i2c_read_register(ZOUT_MSB));
 
     Magnetometer::set_3d_mgnitude(x, y, z);
 }
 
 
-bool MS5837_30BA::startup(I2C bus, int fd)
+bool MS5837_30BA::startup(I2C bus)
 {
-
-    this->fd = fd;
-    bus.selectDevice(fd, MS5837_30BA_ADDRESS, "Pressure");
+    this->bus = bus;
+    bus.selectDevice(MS5837_30BA_ADDRESS, "Pressure");
 
     int c;
     int rv;
     unsigned char data[2] = {0};
     unsigned char b[2];
     int result;
-    bus.i2c_write(fd, RESET);
+    bus.i2c_write(RESET);
 
     usleep(20000);
     
     for (u_int8_t i = 0; i < 7; i++)
     {
-        bus.i2c_write(fd, PROM_READ + 2*i);
-        bus.i2c_read_block(fd, data, 2);
+        bus.i2c_write(PROM_READ + 2*i);
+        bus.i2c_read_block(data, 2);
         c = (data[1] << 8) | data[0];
         
         c = ((c & 0xFF) << 8) | (c >> 8);
@@ -309,26 +304,26 @@ unsigned char MS5837_30BA::_crc4(unsigned int n_prom[])
 void MS5837_30BA::get_binary_data()
 {
 
-    this->bus.selectDevice(this->fd, MS5837_30BA_ADDRESS, "Pressure");
+    this->bus.selectDevice(MS5837_30BA_ADDRESS, "Pressure");
 
     unsigned long D1 = 0, D2 = 0;
     int rv;
     unsigned char pdata[3] = {0}, tdata[3] = {0};
 
 
-    bus.i2c_write(fd, CONVERT_D1_OSR8192);
+    bus.i2c_write(CONVERT_D1_OSR8192);
     usleep(2.5e-6*pow(2, (8+5)) * 1000000);
 
-    bus.i2c_write(fd, ADC_READ);
-    bus.i2c_read_block(fd, pdata, 3);
+    bus.i2c_write(ADC_READ);
+    bus.i2c_read_block(pdata, 3);
 
     D1 = pdata[0] << 16 | pdata[1] << 8 | pdata[2];
 
-    bus.i2c_write(fd, CONVERT_D2_OSR8192);
+    bus.i2c_write(CONVERT_D2_OSR8192);
 
     usleep(2.5e-6*pow(2, (8+5)) * 1000000);
-    bus.i2c_write(fd, ADC_READ);
-    bus.i2c_read_block(fd, tdata, 3);
+    bus.i2c_write(ADC_READ);
+    bus.i2c_read_block(tdata, 3);
 
     D2 = tdata[0] << 16 | tdata[1] << 8 | tdata[2];
 

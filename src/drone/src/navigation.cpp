@@ -28,7 +28,7 @@ int main(int argc, char **argv)
        exit(1);
     }
 
-    I2C i2c1((char*) I2C_BUS);
+    I2C i2c1((char*) I2C_BUS, fd);
 
     ros::init(argc, argv, "navigation_module");
     ros::NodeHandle n;
@@ -66,9 +66,9 @@ int main(int argc, char **argv)
 
    
 
-    imu.startup(i2c1, fd);
-    compass.startup(i2c1, fd);
-    bar.startup(i2c1, fd);
+    imu.startup(i2c1);
+    compass.startup(i2c1);
+    bar.startup(i2c1);
     bar.set_conversion(bar.Pa);
 
     float ax, ay, az;

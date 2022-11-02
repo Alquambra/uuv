@@ -56,6 +56,12 @@ void ComplementaryFilter::update(float gx, float gy, float gz, float ax, float a
     q[1] = (1 - alpha) * Qw[1] + alpha * Qam[1];
     q[2] = (1 - alpha) * Qw[2] + alpha * Qam[2];
     q[3] = (1 - alpha) * Qw[3] + alpha * Qam[3];
+
+    float norm = sqrt(q[0]*q[0] + q[1]*q[1] + q[2]*q[2] + q[3]*q[3]);
+    q[0] /= norm;
+    q[1] /= norm;
+    q[2] /= norm;
+    q[3] /= norm;
 }
 
 float ComplementaryFilter::invSqrt(float x) {

@@ -43,8 +43,8 @@ class Control:
         # self.pid_yaw = PID(2, 0, 0)
         self.pid_depth = PID(depth_gains['P'], depth_gains['I'], depth_gains['D'])
 
-        self.oceanic_yaml = "/home/pi/drone_ros/src/drone/config/oceanic.yaml"
-        self.pid_yaml = "/home/pi/drone_ros/src/drone/config/pid.yaml"
+        self.oceanic_yaml = "/usr/local/drone_ros/src/drone/config/oceanic.yaml"
+        self.pid_yaml = "/usr/local/drone_ros/src/drone/config/pid.yaml"
 
         self.t = rospy.Time.now()
 

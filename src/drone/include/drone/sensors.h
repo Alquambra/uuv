@@ -67,7 +67,7 @@ class MPU6050 : public Accelerometer, public Gyroscope
     
 
     I2C bus;
-    int fd;
+    
     char accelerometer_range_configuration, gyroscope_range_configuration;
 
     public:
@@ -92,7 +92,7 @@ class MPU6050 : public Accelerometer, public Gyroscope
 
         MPU6050(int chosen_accelerometer_range, int chosen_gyroscope_range);
 
-        void startup(I2C bus, int fd); // Инициализация 
+        void startup(I2C); // Инициализация 
         char read_status();            // Чтение статуса 
         void get_binary_data();           // Чтение сырых битовых данных
         void get_sample()              // Преобразование битовых данных в реальные величины
@@ -100,7 +100,7 @@ class MPU6050 : public Accelerometer, public Gyroscope
             Accelerometer::get_sample();
             Gyroscope::get_sample();
         }
-        void calibration(int rounds);  // Калибровка
+        void calibration(int);  // Калибровка
 };
 
 
@@ -179,14 +179,14 @@ class QMC5883 : public Magnetometer
         };
 
         I2C bus;
-        int fd;
+
         char oversampling, range, rate, mode;
 
         QMC5883();
 
         QMC5883(int chosen_oversampling, int chosen_range, int chosen_rate, int chosen_mode);
 
-        void startup(I2C bus, int fd);    // Инициализация
+        void startup(I2C);    // Инициализация
         char read_status();               // Чтение статуса
         void get_binary_data();              // Чтение сырых битовых данных
         void get_sample()                 // Преобразование битовых данных в реальные величины
@@ -245,7 +245,6 @@ class MS5837_30BA : public Barometer
     private:
 
         I2C bus;
-        int fd;
         double Temperature;
         float conversion;
         unsigned char _crc4(unsigned int n_prom[]);     // Проверка контрольной суммы
@@ -264,7 +263,7 @@ class MS5837_30BA : public Barometer
 
         MS5837_30BA() : Barometer::Barometer() {}
 
-        bool startup(I2C bus, int fd);                  // Инициализация
+        bool startup(I2C);                  // Инициализация
         
         void get_binary_data();                            // Чтение сырых битовых данных
 
