@@ -46,6 +46,11 @@ class Control:
         self.oceanic_yaml = "/usr/local/drone_ros/src/drone/config/oceanic.yaml"
         self.pid_yaml = "/usr/local/drone_ros/src/drone/config/pid.yaml"
 
+        self.lxscale = rospy.get_param('lxscale')
+        self.lyscale = rospy.get_param('lyscale')
+        self.rxscale = rospy.get_param('rxscale')
+        self.ryscale = rospy.get_param('ryscale')
+
         self.t = rospy.Time.now()
 
     def save_yaml(self):
@@ -87,21 +92,35 @@ class Control:
         if x < lower_limit: x = lower_limit
         return x
 
-    def control_callback(self, joystick_msg, imu_msg, depth_msg):
+    @staticmethod
+    def apply_calibration(value, scale):
+        value += 100
+        value *= scale
+        value = Control.constrain(value, 190, 10)
+        print(value, scale)
+        return Control.map(value, 10, 190, -100, 100)
 
-        print(joystick_msg)
+
+    def control_callback(self, joystick_msg, imu_msg, depth_msg):
 
         tangage_mode = (joystick_msg.status & 0b0000000000000001)
         yaw_mode = (joystick_msg.status & 0b0000000000000010) >> 1
         hand_mode = (joystick_msg.status & 0b0000000000001100) >> 2
         speed_mode = (joystick_msg.status & 0b0000000000110000) >> 4
         light_mode = (joystick_msg.status & 0b0000000011000000) >> 6
-        stabilization_mode = (joystick_msg.status & 0b0000000100000000) >> 8
-        lock_mode = (joystick_msg.status & 0b0000001000000000) >> 9
-        lx = joystick_msg.lx
-        ly = joystick_msg.ly
-        rx = joystick_msg.rx
-        ry = joystick_msg.ry
+        stabilization_mode = (~joystick_msg.status & 0b0000000100000000) >> 8
+        lock_mode = (~joystick_msg.status & 0b0000001000000000) >> 9
+        lx = Control.apply_calibration(joystick_msg.lx, self.lxscale)
+        ly = Control.apply_calibration(joystick_msg.ly, self.lyscale)
+        rx = Control.apply_calibration(joystick_msg.rx, self.rxscale)
+        ry = Control.apply_calibration(joystick_msg.ry, self.ryscale)
+
+        # lx = joystick_msg.lx
+        # ly = joystick_msg.ly
+        # rx = joystick_msg.rx
+        # ry = joystick_msg.ry
+
+        print(lx, ly, rx, ry)
 
         depth = depth_msg.value
 

@@ -17,7 +17,10 @@
 int main(int argc, char **argv)
 {
 
+    
+
     int fd;
+
 
     if ((fd = open(I2C_BUS, O_RDWR)) < 0)
     {
@@ -71,6 +74,9 @@ int main(int argc, char **argv)
     bar.startup(i2c1);
     bar.set_conversion(bar.Pa);
 
+    float alpha = 0.2;
+    float axf = 0, ayf = 0, azf = 0;
+    float gxf = 0, gyf = 0, gzf = 0;
     float ax, ay, az;
     float gx, gy, gz;
     float mx, my, mz;
@@ -102,10 +108,6 @@ int main(int argc, char **argv)
         imu.Gyroscope::get_3d_magnitude(gx, gy, gz);
         compass.get_3d_magnitude(mx, my, mz);
 
-        // ax = -ax; ay = -ay; az = -az;
-        // gx = -gx; gy = -gy; gz = -gz;
-        // mx = -mx; my = -my; mz = -mz;
-
         if (CALIBRATED)
         {
             // n.getParam("/Accelerometer/axoffset", axoffset);
@@ -132,8 +134,19 @@ int main(int argc, char **argv)
             mz = (mz - mzoffset) * mzscale;
         }
 
+        ax = -ax; ay = -ay; az = -az;
+        gx = -gx; gy = -gy; gz = -gz;
+        mx = -mx; my = -my; mz = -mz;
+
+        axf = alpha * ax + (1 - alpha) * axf;
+        ayf = alpha * ay + (1 - alpha) * ayf;
+        azf = alpha * az + (1 - alpha) * azf;
+        gxf = alpha * gx + (1 - alpha) * gxf;
+        gyf = alpha * gy + (1 - alpha) * gyf;
+        gzf = alpha * gz + (1 - alpha) * gzf;
+
         dt = ros::Time::now().toSec() - time_moment;
-        ahrs.update(gx, gy, gz, ax, ay, az, mx, my, mz, dt);
+        ahrs.update(gxf, gyf, gzf, axf, ayf, azf, mx, my, mz, dt);
         time_moment = ros::Time::now().toSec();
 
         // geometry_msgs::PoseStamped msg;
@@ -189,15 +202,15 @@ int main(int argc, char **argv)
 
         imu_msg.orientation_covariance = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-        imu_msg.angular_velocity.x = gx;
-        imu_msg.angular_velocity.y = gy;
-        imu_msg.angular_velocity.z = gz;
+        imu_msg.angular_velocity.x = gxf;
+        imu_msg.angular_velocity.y = gyf;
+        imu_msg.angular_velocity.z = gzf;
 
         imu_msg.angular_velocity_covariance = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-        imu_msg.linear_acceleration.x = ax;
-        imu_msg.linear_acceleration.y = ay;
-        imu_msg.linear_acceleration.z = az;
+        imu_msg.linear_acceleration.x = axf;
+        imu_msg.linear_acceleration.y = ayf;
+        imu_msg.linear_acceleration.z = azf;
 
         imu_msg.linear_acceleration_covariance = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 

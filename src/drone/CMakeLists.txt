@@ -193,6 +193,7 @@ catkin_install_python(PROGRAMS
   scripts/hand.py
   scripts/autocontrol.py
   scripts/pitch_keeper.py
+  scripts/joystick_calibration.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

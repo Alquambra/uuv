@@ -3,8 +3,9 @@ import rospy
 import serial
 import struct
 from std_msgs.msg import Int16
-from geometry_msgs.msg import Vector3
+from sensor_msgs.msg import Imu
 from drone.PID import PID
+from tf.transformations import euler_from_quaternion
 
 
 class Autocontrol:
@@ -13,7 +14,7 @@ class Autocontrol:
 
         gains = rospy.get_param('PidPitch')
         self.pid = PID(gains['P'], gains['I'], gains['D'], -40, 40)
-        self.sub = rospy.Subscriber("euler", Vector3, self.callback)
+        self.sub = rospy.Subscriber("imu_data", Imu, self.callback)
         self.t = rospy.Time.now()
         self.pid.set_target(0)
 
@@ -33,38 +34,62 @@ class Autocontrol:
         return x
 
     def callback(self, msg):
+        print("run")
+
+        vertical_left_params = rospy.get_param('vertical_left')
+        vertical_right_params = rospy.get_param('vertical_right')
+        horizontal_left_params = rospy.get_param('horizontal_left')
+        horizontal_right_params = rospy.get_param('horizontal_right')
+        vertical_back_params = rospy.get_param('vertical_back')
+
+        vl_direction = -1 if vertical_left_params["reversed"] else 1
+        vr_direction = -1 if vertical_right_params["reversed"] else 1
+        hl_direction = -1 if horizontal_left_params["reversed"] else 1
+        hr_direction = -1 if horizontal_right_params["reversed"] else 1
+        vb_direction = -1 if vertical_back_params["reversed"] else 1
+
+
         gains = rospy.get_param('PidPitch')
         self.pid.set_gains(gains['P'], gains['I'], gains['D'])
 
         dt = rospy.Time.now() - self.t
         self.t = rospy.Time.now()
-        pitch_power = self.pid.control(msg.y, dt)
-        # print(pitch_power, msg.y)
+        pitch, _, yaw = euler_from_quaternion([
+           msg.orientation.x,
+           msg.orientation.y,
+           msg.orientation.z,
+           msg.orientation.w
+        ])
+        pitch = pitch * 57.2958
+        # yaw = yaw * 57.2958
+        pitch_power = self.pid.control(pitch, dt)
+        pitch_power = 0
+        print(pitch_power, pitch)
         
         hand_mode = rospy.get_param("hand")["mode"]
-        if hand_mode = 1:
+        if hand_mode == 1:
             self.pub_hand.publish(1800)
-        elif hand_mode = 2:
+        elif hand_mode == 2:
             self.pub_hand.publish(1200)
         else:
             self.pub_hand.publish(1500)
 
-        horizontal_left = Autocontrol.constrain(rospy.get_param("horizontal_left")["power"], 60, -60)
-        horizontal_right = Autocontrol.constrain(rospy.get_param("horizontal_right")["power"], 60, -60)
-        vertical_back = Autocontrol.constrain(rospy.get_param("vertical_back")["power"], 60, -60)
-        vertical_left = Autocontrol.constrain(rospy.get_param("vertical_left")["power"], 60, -60)
-        vertical_right = Autocontrol.constrain(rospy.get_param("vertical_right")["power"], 60, -60)
+        # horizontal_left = Autocontrol.constrain(rospy.get_param("horizontal_left")["power"], 60, -60)
+        # horizontal_right = Autocontrol.constrain(rospy.get_param("horizontal_right")["power"], 60, -60)
+        # vertical_back = Autocontrol.constrain(rospy.get_param("vertical_back")["power"], 60, -60)
+        # vertical_left = Autocontrol.constrain(rospy.get_param("vertical_left")["power"], 60, -60)
+        # vertical_right = Autocontrol.constrain(rospy.get_param("vertical_right")["power"], 60, -60)
 
-        # forward_power = Autocontrol.constrain(rospy.get_param("forward")["power"], 60, -60)
-        # up_power = Autocontrol.constrain(rospy.get_param("up")["power"], 60, -60)
+        forward_power = Autocontrol.constrain(rospy.get_param("forward")["power"], 60, -60)
+        up_power = Autocontrol.constrain(rospy.get_param("up")["power"], 60, -60)
         light_mode = rospy.get_param("light_mode")
         # speed_mode = rospy.get_param("speed_mode")
         # turn_power = Autocontrol.constrain(rospy.get_param("turn")["power"], 100, -100)
-        self.serial_frame["data"][0] = vertical_right + pitch_power
-        self.serial_frame["data"][1] = vertical_left + pitch_power
-        self.serial_frame["data"][2] = horizontal_right
-        self.serial_frame["data"][3] = horizontal_right
-        self.serial_frame["data"][4] = vertical_back - pitch_power
+        self.serial_frame["data"][0] = (up_power + pitch_power) * vr_direction
+        self.serial_frame["data"][1] = (up_power + pitch_power) * vl_direction
+        self.serial_frame["data"][2] = (forward_power) * hr_direction
+        self.serial_frame["data"][3] = (forward_power) * hl_direction
+        self.serial_frame["data"][4] = (up_power - pitch_power) * vb_direction
         self.serial_frame["data"][5] = light_mode
         # self.serial_frame["data"][6]
 

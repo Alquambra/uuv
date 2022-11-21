@@ -5,9 +5,9 @@
     <rosparam command="load" file="$(find drone)/config/pid.yaml" />
     <rosparam command="load" file="$(find drone)/config/oceanic.yaml" />
     <rosparam command="load" file="$(find drone)/config/calibration.yaml"/>
-    <!-- <include file="$(find raspicam_node)/launch/camerav2_320x240.launch">
+    <include file="$(find raspicam_node)/launch/camerav2_320x240.launch">
         <arg name="enable_raw" value="true" />
-    </include> -->
+    </include>
     <node pkg="drone" type="j_driver2" name="j_driver2"></node>
     <node pkg="drone" type="navigation" name="inertial_navigation" output="screen">
         <param name="CALIBRATED" value="true"/>

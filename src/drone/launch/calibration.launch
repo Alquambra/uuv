@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="drone" type="j_driver2" name="joystick_node"></node>
+    <node pkg="drone" type="joystick_calibration.py" name="joystick_calibration" output="screen" required="true"></node>
+</launch>

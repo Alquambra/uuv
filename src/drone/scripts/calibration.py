@@ -505,8 +505,8 @@ class InertialNavigationSystem:
             conf = yaml.safe_load(f)
 
         conf["Gyroscope"]["gxoffset"] = gxcal
-        conf["Gyroscope"]["gzoffset"] = gycal
-        conf["Gyroscope"]["gyoffset"] = gzcal
+        conf["Gyroscope"]["gyoffset"] = gycal
+        conf["Gyroscope"]["gzoffset"] = gzcal
         conf["Accelerometer"]["axoffset"] = axcal
         conf["Accelerometer"]["ayoffset"] = aycal
         conf["Accelerometer"]["azoffset"] = azcal
