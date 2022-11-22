@@ -97,7 +97,7 @@ class Control:
         value += 100
         value *= scale
         value = Control.constrain(value, 190, 10)
-        print(value, scale)
+        #print(value, scale)
         return Control.map(value, 10, 190, -100, 100)
 
 
@@ -120,7 +120,7 @@ class Control:
         # rx = joystick_msg.rx
         # ry = joystick_msg.ry
 
-        print(lx, ly, rx, ry)
+        #print(lx, ly, rx, ry)
 
         depth = depth_msg.value
 
@@ -217,15 +217,15 @@ class Control:
         pitch_gains = rospy.get_param('PidPitch')
         self.pid_depth.set_gains(depth_gains['P'], depth_gains['I'], depth_gains['D'])
         self.pid_pitch.set_gains(pitch_gains['P'], pitch_gains['I'], pitch_gains['D'])
-        self.pid_depth.set_target(depth_gains['target'])
-        self.pid_pitch.set_target(pitch_gains['target'])
+        #self.pid_depth.set_target(depth_gains['target'])
+        #self.pid_pitch.set_target(pitch_gains['target'])
 
         if stabilization_mode:
             if lx in range(-12, 13) and ly in range(-12, 13):
                 pitch_power = self.pid_pitch.control(pitch, dt)
                 depth_power = -self.pid_depth.control(depth, dt)
                 # depth_power = 0
-                # rospy.loginfo("depth_power %f | pitch_power %f, pitch %f" , depth_power , pitch_power, pitch)
+                rospy.loginfo("depth_power %f | depth %f" , depth_power , depth)
                 print(round(pitch, 2), round(pitch_power, 2), round(depth_power, 2))
                 left_alt_pwm = depth_power + pitch_power
                 right_alt_pwm = depth_power + pitch_power
@@ -246,7 +246,7 @@ class Control:
                 # self.pid_roll.set_target(roll)
                 # self.pid_pitch.set_target(0)
                 # self.pid_yaw.set_target(yaw)
-                # self.pid_depth.set_target(navigation_msg.pose.position.z)
+                self.pid_depth.set_target(depth)
                 self.pid_pitch.break_pid()
                 self.pid_depth.break_pid()
 
@@ -267,13 +267,13 @@ class Control:
         self.serial_frame["data"][2] = left_heading_pwm
         self.serial_frame["data"][3] = right_heading_pwm
 
-        self.serial_frame["data"][0] = Control.constrain(int(self.serial_frame["data"][0] * vertical_right_direction * 0.84), 100, -100) # d3  motor3
-        self.serial_frame["data"][1] = Control.constrain(int(self.serial_frame["data"][1] * vertical_left_direction * 0.84), 100, -100) # d5  motor4
+        self.serial_frame["data"][0] = Control.constrain(int(self.serial_frame["data"][0] * vertical_right_direction * 1), 100, -100) # d3  motor3
+        self.serial_frame["data"][1] = Control.constrain(int(self.serial_frame["data"][1] * vertical_left_direction * 1), 100, -100) # d5  motor4
         self.serial_frame["data"][2] = Control.constrain(int(self.serial_frame["data"][2] * horizontal_right_direction), 100, -100) # d6  motor1
         self.serial_frame["data"][3] = Control.constrain(int(self.serial_frame["data"][3] * horizontal_left_direction), 100, -100) # d9  motor2
-        self.serial_frame["data"][4] = Control.constrain(int(self.serial_frame["data"][4] * vertical_back_direction), 100, -100) # d10 motor5
+        self.serial_frame["data"][4] = Control.constrain(int(self.serial_frame["data"][4] * vertical_back_direction * 1.33), 100, -100) # d10 motor5
 
-        print(self.serial_frame["data"])
+        # print(self.serial_frame["data"])
 
         self.t = rospy.Time.now()
 
